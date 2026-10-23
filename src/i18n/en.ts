@@ -61,7 +61,7 @@ export default {
       },
       {
         title: 'Choose how often and how hard',
-        text: 'Get a challenge every 1 to 15 minutes in those apps, or as soon as one opens. Pick a starting level from Beginner to Expert.',
+        text: 'Decide how long you can stay in those apps before a challenge, or get one as soon as they open. Pick a starting level from Beginner to Expert.',
         alt: 'Sheet for choosing the minimum difficulty, set to Intermediate level 5',
       },
       {
