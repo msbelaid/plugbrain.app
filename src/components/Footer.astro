@@ -1,0 +1,51 @@
+---
+import Logo from './Logo.astro';
+import { getStrings } from '../i18n';
+import { links } from '../data/links';
+import { repoInfo } from '../data/github';
+
+const t = getStrings(Astro.currentLocale);
+const { version } = await repoInfo();
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="wrap grid">
+    <div class="about">
+      <Logo size={40} />
+      <p>{t.hero.tagline}</p>
+      <p class="small">{t.footer.made}<br />{t.footer.license}</p>
+    </div>
+    <div>
+      <h2>{t.footer.download}</h2>
+      <ul>
+        <li><a href={links.play}>{t.stores.play}</a></li>
+        <li><a href={links.fdroid}>{t.stores.fdroid}</a></li>
+        <li><a href={links.izzy}>{t.stores.izzy}</a></li>
+        <li><a href={links.apk}>{t.stores.apk}</a></li>
+      </ul>
+      {version && <p class="small"><a href={links.releases}>{t.footer.version}: {version}</a></p>}
+    </div>
+    <div>
+      <h2>{t.footer.project}</h2>
+      <ul>
+        <li><a href={links.github}>{t.footer.source}</a></li>
+        <li><a href={links.issues}>{t.footer.issues}</a></li>
+        <li><a href={links.reddit}>{t.footer.reddit}</a></li>
+        <li><a href="/privacy/">{t.footer.privacy}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap legal">© {year} PlugBrain contributors</div>
+</footer>
+<style>
+  .site-footer { background: #000f17; color: var(--on-dark-muted); padding: 72px 0 32px; font-size: 15px; }
+  .grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+  .about p { margin: 16px 0 0; max-width: 320px; }
+  .small { font-size: 14px; color: var(--on-dark-faint); }
+  h2 { font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--on-dark); margin-bottom: 14px; }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  a { color: var(--on-dark-muted); text-decoration: none; }
+  a:hover { color: var(--teal); }
+  .legal { margin-top: 56px; padding-top: 24px; border-top: 1px solid rgba(173, 254, 253, 0.08); font-size: 13px; color: var(--on-dark-faint); }
+  @media (max-width: 700px) { .grid { grid-template-columns: 1fr 1fr; } .about { grid-column: 1 / -1; } }
+</style>

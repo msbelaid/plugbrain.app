@@ -1,0 +1,50 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { getStrings } from '../i18n';
+import { links } from '../data/links';
+import { repoInfo } from '../data/github';
+
+const t = getStrings(Astro.currentLocale);
+const { stars } = await repoInfo();
+const home = Astro.url.pathname === '/' ? '' : '/';
+---
+<header class="site-header">
+  <div class="wrap bar">
+    <a href="/" class="brand" aria-label="PlugBrain home"><Logo /></a>
+    <nav aria-label="Main">
+      <a href={`${home}#how`}>{t.nav.how}</a>
+      <a href={`${home}#difficulty`}>{t.nav.difficulty}</a>
+      <a href={`${home}#privacy`}>{t.nav.privacy}</a>
+      <a href={`${home}#faq`}>{t.nav.faq}</a>
+    </nav>
+    <div class="actions">
+      <a class="gh" href={links.github} aria-label={stars ? `GitHub, ${stars} stars` : 'GitHub'}>
+        <Icon name="github" size={20} />
+        {stars && <span><Icon name="star" size={14} /> {stars}</span>}
+      </a>
+      <a class="btn btn-primary get" href={`${home}#download`}>{t.nav.getApp}</a>
+    </div>
+  </div>
+</header>
+<style>
+  .site-header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(0, 24, 36, 0.82);
+    backdrop-filter: saturate(160%) blur(14px);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+    border-bottom: 1px solid rgba(173, 254, 253, 0.08);
+  }
+  .bar { display: flex; align-items: center; gap: 24px; height: 68px; }
+  .brand { text-decoration: none; display: flex; }
+  nav { display: flex; gap: 4px; margin-left: auto; }
+  nav a { color: var(--on-dark-muted); text-decoration: none; font-size: 15px; padding: 8px 12px; border-radius: 10px; }
+  nav a:hover { color: var(--on-dark); background: rgba(173, 254, 253, 0.06); }
+  .actions { display: flex; align-items: center; gap: 10px; }
+  .gh { display: inline-flex; align-items: center; gap: 8px; color: var(--on-dark-muted); text-decoration: none; font-size: 14px; padding: 8px 10px; border-radius: 10px; }
+  .gh span { display: inline-flex; align-items: center; gap: 3px; }
+  .gh:hover { color: var(--on-dark); }
+  .get { padding: 9px 18px; font-size: 15px; }
+  @media (max-width: 900px) { nav { display: none; } .actions { margin-left: auto; } }
+  @media (max-width: 420px) { .gh span { display: none; } }
+</style>

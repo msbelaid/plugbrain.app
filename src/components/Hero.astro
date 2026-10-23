@@ -1,0 +1,66 @@
+---
+import ChallengeDemo from './ChallengeDemo.astro';
+import StoreButtons from './StoreButtons.astro';
+import Icon from './Icon.astro';
+import { getStrings } from '../i18n';
+const t = getStrings(Astro.currentLocale);
+
+// Faint equations floating behind the hero, like the README banner.
+const eqs = [
+  { text: '7 × 8 = ?', x: '6%', y: '14%' },
+  { text: '12 + 29', x: '44%', y: '8%' },
+  { text: '38 − 15', x: '86%', y: '20%' },
+  { text: '45 ÷ 5', x: '4%', y: '86%' },
+  { text: '? × 6 = 42', x: '50%', y: '92%' },
+  { text: '23 × 11', x: '90%', y: '78%' },
+];
+---
+<section class="hero" id="download">
+  <div class="bg" aria-hidden="true">
+    {eqs.map((e) => <span class="eq" style={`left:${e.x};top:${e.y}`}>{e.text}</span>)}
+    <i class="px" style="left:3%;top:40%"></i><i class="px" style="left:calc(3% + 44px);top:40%"></i><i class="px" style="left:calc(3% + 44px);top:calc(40% + 44px)"></i>
+    <i class="px" style="right:4%;top:46%"></i><i class="px" style="right:4%;top:calc(46% + 44px)"></i><i class="px" style="right:calc(4% + 44px);top:calc(46% + 44px)"></i>
+  </div>
+  <div class="wrap grid">
+    <div class="copy">
+      <p class="eyebrow">{t.hero.eyebrow}</p>
+      <h1>{t.hero.title}</h1>
+      <p class="tagline">{t.hero.tagline}</p>
+      <p class="sub" set:html={t.hero.sub} />
+      <StoreButtons />
+      <ul class="proof">
+        {t.hero.proof.map((p) => <li><Icon name="check" size={16} /> {p}</li>)}
+      </ul>
+    </div>
+    <div class="visual">
+      <div class="glow" aria-hidden="true"></div>
+      <ChallengeDemo />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative; overflow: hidden; color: var(--on-dark);
+    background: radial-gradient(circle at 75% 45%, #06343f 0%, var(--navy) 58%);
+    padding: 72px 0 96px;
+    scroll-margin-top: 68px;
+  }
+  .bg { position: absolute; inset: 0; pointer-events: none; }
+  .eq { position: absolute; color: var(--teal); opacity: 0.09; font-weight: 600; font-size: clamp(18px, 2.2vw, 30px); white-space: nowrap; font-variant-numeric: tabular-nums; transform: translate(-50%, -50%); }
+  .grid { position: relative; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: center; }
+  h1 { font-size: clamp(44px, 6.4vw, 80px); line-height: 1.02; letter-spacing: -0.035em; color: var(--on-dark); max-width: 11ch; }
+  .tagline { text-wrap: balance; font-size: clamp(22px, 2.6vw, 30px); color: var(--teal); font-weight: 500; margin: 22px 0 0; letter-spacing: -0.01em; }
+  .sub { font-size: clamp(17px, 1.8vw, 19px); color: var(--on-dark-muted); margin: 14px 0 34px; max-width: 34ch; }
+  .sub :global(b) { color: var(--teal); font-weight: 600; }
+  .proof { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-wrap: wrap; gap: 8px 22px; color: var(--on-dark-muted); font-size: 15px; }
+  .proof li { display: inline-flex; align-items: center; gap: 6px; }
+  .proof :global(svg) { color: var(--teal); }
+  .visual { position: relative; display: flex; justify-content: center; }
+  .glow { position: absolute; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(32, 223, 217, 0.22), transparent 65%); top: 50%; left: 50%; transform: translate(-50%, -55%); }
+  @media (max-width: 900px) {
+    .hero { padding: 48px 0 72px; }
+    .grid { grid-template-columns: 1fr; gap: 56px; }
+    h1 { max-width: none; }
+  }
+</style>

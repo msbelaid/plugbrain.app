@@ -1,0 +1,165 @@
+---
+// A playable copy of the app's challenge screen. Levels and problem types follow
+// the app's progression loosely (additions first, multi-digit multiplication last).
+import Icon from './Icon.astro';
+import { getStrings } from '../i18n';
+const t = getStrings(Astro.currentLocale);
+const MAX = 15;
+---
+<div class="demo" data-demo data-strings={JSON.stringify(t.demo)}>
+  <div class="phone">
+    <div class="screen">
+      <div class="app">
+        <p class="locked"><Icon name="lock" size={14} /> {t.demo.lockedApp}</p>
+        <img class="mark" src="/logo-light.svg" width="64" height="64" alt="" />
+        <p class="title">{t.demo.title}</p>
+        <form class="card" data-form novalidate>
+          <p class="q" data-q aria-live="polite">7 × 8</p>
+          <label class="sr" for="demo-answer">{t.demo.inputLabel}</label>
+          <input id="demo-answer" class="answer" data-input inputmode="numeric" autocomplete="off" enterkeyhint="done" placeholder={t.demo.placeholder} maxlength="6" />
+          <button class="check" type="submit" data-check><Icon name="check" size={18} /> {t.demo.check}</button>
+          <button class="more" type="button" data-more hidden>{t.demo.keepScrolling} <Icon name="arrow" size={18} /></button>
+        </form>
+        <p class="feedback" data-feedback role="status"></p>
+        <button class="leave" type="button" data-leave><Icon name="log-out" size={18} /> {t.demo.leave}</button>
+        <div class="meter" aria-hidden="true">
+          <div class="cells">{Array.from({ length: MAX }, (_, i) => <i data-cell={i + 1}></i>)}</div>
+        </div>
+        <p class="level"><span data-level-text>{t.demo.level} 3 {t.demo.of} {MAX}</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="hint">{t.demo.hint}</p>
+</div>
+
+<script>
+  const MAX = 15;
+  const rnd = (a: number, b: number) => a + Math.floor(Math.random() * (b - a + 1));
+
+  // One generator per level: [question, answer]. No square roots on purpose.
+  const levels: Array<() => [string, number]> = [
+    () => { const a = rnd(1, 4), b = rnd(1, 5); return [`${a} + ${b}`, a + b]; },
+    () => { const a = rnd(3, 9), b = rnd(3, 9); return [`${a} + ${b}`, a + b]; },
+    () => { const a = rnd(8, 18), b = rnd(2, a - 1); return [`${a} − ${b}`, a - b]; },
+    () => { const a = rnd(12, 79), b = rnd(3, 9); return [`${a} + ${b}`, a + b]; },
+    () => { const a = rnd(12, 59), b = rnd(12, 49); return [`${a} + ${b}`, a + b]; },
+    () => { const a = rnd(12, 49), b = [2, 5, 10][rnd(0, 2)]; return [`${a} × ${b}`, a * b]; },
+    () => { const a = rnd(3, 9), b = rnd(4, 9); return [`${a} × ${b}`, a * b]; },
+    () => { const a = rnd(51, 98), b = rnd(13, a - 11); return [`${a} − ${b}`, a - b]; },
+    () => { const x = rnd(12, 39), b = rnd(11, 49); return [`? + ${b} = ${x + b}`, x]; },
+    () => { const x = rnd(4, 9), b = rnd(6, 9); return [`? × ${b} = ${x * b}`, x]; },
+    () => { const a = rnd(12, 45); return [`${a} × 11`, a * 11]; },
+    () => { const x = rnd(4, 9), q = rnd(6, 12); return [`${x * q} ÷ ? = ${q}`, x]; },
+    () => { const a = rnd(23, 89), b = rnd(3, 9); return [`${a} × ${b}`, a * b]; },
+    () => { const a = rnd(215, 689), b = rnd(147, 389); return [`${a} + ${b}`, a + b]; },
+    () => { const a = rnd(23, 79), b = rnd(13, 49); return [`${a} × ${b}`, a * b]; },
+  ];
+
+  document.querySelectorAll<HTMLElement>('[data-demo]').forEach((root) => {
+    const s = JSON.parse(root.dataset.strings ?? '{}');
+    const q = root.querySelector<HTMLElement>('[data-q]')!;
+    const form = root.querySelector<HTMLFormElement>('[data-form]')!;
+    const input = root.querySelector<HTMLInputElement>('[data-input]')!;
+    const check = root.querySelector<HTMLButtonElement>('[data-check]')!;
+    const more = root.querySelector<HTMLButtonElement>('[data-more]')!;
+    const leave = root.querySelector<HTMLButtonElement>('[data-leave]')!;
+    const feedback = root.querySelector<HTMLElement>('[data-feedback]')!;
+    const levelText = root.querySelector<HTMLElement>('[data-level-text]')!;
+    const cells = root.querySelectorAll<HTMLElement>('[data-cell]');
+    const card = form;
+
+    let level = 3;
+    let answer = 0;
+
+    const paint = () => {
+      levelText.textContent = `${s.level} ${level} ${s.of} ${MAX}`;
+      cells.forEach((c) => c.classList.toggle('on', Number(c.dataset.cell) <= level));
+    };
+    const ask = () => {
+      const [text, value] = levels[level - 1]();
+      q.textContent = text;
+      answer = value;
+      input.value = '';
+      input.disabled = false;
+      check.hidden = false;
+      more.hidden = true;
+      card.classList.remove('solved');
+      paint();
+    };
+    const say = (msg: string, kind = '') => {
+      feedback.textContent = msg;
+      feedback.dataset.kind = kind;
+    };
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!more.hidden) return;
+      const raw = input.value.trim().replace(/[^\d-]/g, '');
+      if (!raw) { say(s.empty, 'warn'); input.focus(); return; }
+      if (Number(raw) === answer) {
+        const wasMax = level === MAX;
+        level = Math.min(MAX, level + 1);
+        paint();
+        card.classList.add('solved');
+        input.disabled = true;
+        check.hidden = true;
+        more.hidden = false;
+        say(wasMax ? s.maxed : s.unlocked, 'ok');
+        more.focus({ preventScroll: true });
+      } else {
+        say(s.wrong, 'warn');
+        card.classList.remove('shake');
+        void card.offsetWidth; // restart the animation
+        card.classList.add('shake');
+        input.select();
+      }
+    });
+    more.addEventListener('click', () => { say(''); ask(); input.focus({ preventScroll: true }); });
+    leave.addEventListener('click', () => {
+      const atMin = level === 1;
+      level = Math.max(1, level - 2);
+      ask();
+      say(atMin ? s.atMin : s.leftApp, 'ok');
+    });
+
+    ask();
+  });
+</script>
+
+<style>
+  .demo { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+  .phone { max-width: 320px; }
+  .screen { background: linear-gradient(180deg, #e9fbfa 0%, #ffffff 38%); }
+  .app { height: 100%; display: flex; flex-direction: column; align-items: center; padding: 44px 20px 22px; color: #0f2a2e; text-align: center; }
+  .locked { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: #4f6666; background: #f1f2f2; border-radius: 999px; padding: 4px 12px; margin: 0; }
+  .mark { width: 64px; height: 64px; margin: 18px 0 2px; }
+  .title { font-weight: 600; font-size: 19px; margin: 0 0 16px; }
+  .card { width: 100%; background: #fff; border: 1.5px solid #dfe0e0; border-radius: 22px; padding: 18px 14px 14px; display: grid; gap: 10px; box-shadow: 0 10px 30px -18px rgba(0, 72, 82, 0.4); transition: border-color 0.2s ease; }
+  .card.solved { border-color: #01abab; }
+  .q { font-weight: 600; font-size: 30px; margin: 0 0 4px; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; white-space: nowrap; }
+  .answer { width: 100%; font: inherit; font-size: 17px; font-weight: 500; text-align: center; color: #0f2a2e; background: #f1f2f2; border: 1.5px solid transparent; border-radius: 999px; padding: 10px 14px; outline: none; }
+  .answer:focus { border-color: #01abab; background: #fff; }
+  .answer:disabled { color: #01abab; background: #e5ffff; }
+  .check, .more { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font: inherit; font-weight: 600; font-size: 15px; border-radius: 999px; padding: 10px 14px; cursor: pointer; }
+  .check { background: #fff; color: #008181; border: 1.5px solid #dfe0e0; }
+  .check:hover { border-color: #01abab; }
+  .more { background: #e5ffff; color: #015959; border: 1.5px solid #81efef; }
+  .more:hover { background: #c9fbfb; }
+  .feedback { min-height: 40px; margin: 8px 0 0; font-size: 13px; line-height: 1.4; color: #4f6666; display: flex; align-items: center; justify-content: center; }
+  .feedback[data-kind='ok'] { color: #008181; font-weight: 500; }
+  .feedback[data-kind='warn'] { color: #bd100c; }
+  .leave { width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font: inherit; font-weight: 600; font-size: 15px; color: #fff; background: linear-gradient(90deg, #26bfbf, #015959); border: 0; border-radius: 999px; padding: 12px 14px; cursor: pointer; }
+  .leave:hover { filter: brightness(1.08); }
+  .meter { width: 100%; margin-top: auto; padding-top: 14px; }
+  .cells { display: grid; grid-template-columns: repeat(15, 1fr); gap: 3px; }
+  .cells i { display: block; aspect-ratio: 1; border-radius: 3px; background: #dfe0e0; transition: background 0.35s ease, transform 0.35s ease; }
+  .cells i.on { background: #20dfd9; }
+  .cells i.on:nth-child(n + 6) { background: #01abab; }
+  .cells i.on:nth-child(n + 11) { background: #0d7777; }
+  .level { margin: 8px 0 0; font-size: 12px; color: #4f6666; font-weight: 500; }
+  .hint { margin: 0; font-size: 14px; color: var(--on-dark-faint); text-align: center; max-width: 300px; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .shake { animation: shake 0.4s ease; }
+  @keyframes shake { 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
+  @media (max-width: 360px) { .q { font-size: 26px; } }
+</style>

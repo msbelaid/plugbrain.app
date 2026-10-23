@@ -1,0 +1,40 @@
+---
+import Icon from './Icon.astro';
+import { getStrings } from '../i18n';
+const t = getStrings(Astro.currentLocale);
+const c = t.contrast;
+---
+<section class="section">
+  <div class="wrap grid">
+    <div class="reveal">
+      <p class="eyebrow">{c.eyebrow}</p>
+      <h2>{c.title}</h2>
+      <p class="lead">{c.lead}</p>
+    </div>
+    <div class="cols reveal">
+      <div class="col them">
+        <h3>{c.them.title}</h3>
+        <ul>{c.them.items.map((i) => <li><Icon name="x" size={18} /> {i}</li>)}</ul>
+      </div>
+      <div class="col us">
+        <h3><img src="/logo-dark.svg" width="28" height="28" alt="" /> {c.us.title}</h3>
+        <ul>{c.us.items.map((i) => <li><Icon name="check" size={18} /> {i}</li>)}</ul>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .cols { display: grid; gap: 16px; }
+  .col { border-radius: var(--radius); padding: 26px 28px; }
+  .col h3 { display: flex; align-items: center; gap: 8px; font-size: 18px; margin-bottom: 14px; }
+  .col h3 img { margin: -4px 0; }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  li { display: flex; gap: 10px; align-items: flex-start; line-height: 1.45; }
+  li :global(svg) { flex: none; margin-top: 2px; }
+  .them { background: var(--surface); border: 1px solid var(--line); color: var(--muted); }
+  .them li :global(svg) { color: #c0766f; }
+  .us { background: var(--navy); color: var(--on-dark); box-shadow: var(--shadow); border: 1px solid rgba(173, 254, 253, 0.14); }
+  .us li :global(svg) { color: var(--teal); }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; gap: 40px; } }
+</style>

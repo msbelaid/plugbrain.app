@@ -1,0 +1,61 @@
+---
+import Icon from './Icon.astro';
+import { getStrings } from '../i18n';
+import { links, contributors } from '../data/links';
+import { repoInfo } from '../data/github';
+const t = getStrings(Astro.currentLocale);
+const c = t.contribute;
+const { stars } = await repoInfo();
+const icons = ['globe', 'puzzle', 'palette', 'message'];
+---
+<section class="section dark" id="contribute">
+  <div class="wrap">
+    <div class="top reveal">
+      <div>
+        <p class="eyebrow">{c.eyebrow}</p>
+        <h2>{c.title}</h2>
+        <p class="lead">{c.lead}</p>
+      </div>
+      <a class="btn btn-primary" href={links.github}><Icon name="github" size={20} /> {c.stars}{stars && <span class="count"><Icon name="star" size={14} /> {stars}</span>}</a>
+    </div>
+    <ul class="ways">
+      {c.ways.map((w, i) => (
+        <li class="reveal" style={`transition-delay:${i * 70}ms`}>
+          <a href={w.href}>
+            <span class="ic"><Icon name={icons[i]} size={22} /></span>
+            <h3>{w.title} <Icon name="arrow" size={18} class="go" /></h3>
+            <p set:html={w.text} />
+          </a>
+        </li>
+      ))}
+    </ul>
+    <div class="people reveal">
+      <h3>{c.contributors}</h3>
+      <ul>
+        {contributors.map((login) => (
+          <li><a href={`https://github.com/${login}`} title={login}><img src={`/contributors/${login}.webp`} width="44" height="44" alt={login} loading="lazy" /></a></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+<style>
+  .top { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
+  .count { display: inline-flex; align-items: center; gap: 3px; padding-left: 10px; margin-left: 4px; border-left: 1px solid rgba(0, 24, 36, 0.25); }
+  .ways { list-style: none; padding: 0; margin: 56px 0 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .ways a { display: block; height: 100%; text-decoration: none; color: var(--on-dark); border: 1px solid rgba(173, 254, 253, 0.12); border-radius: var(--radius); padding: 24px; transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease; }
+  .ways a:hover { border-color: var(--teal); background: rgba(32, 223, 217, 0.05); transform: translateY(-2px); color: var(--on-dark); }
+  .ic { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: rgba(32, 223, 217, 0.12); color: var(--teal); margin-bottom: 16px; }
+  h3 { font-size: 18px; display: flex; align-items: center; gap: 6px; }
+  h3 :global(.go) { color: var(--teal); transition: transform 0.2s ease; }
+  .ways a:hover :global(.go) { transform: translateX(3px); }
+  .ways p { margin: 8px 0 0; color: var(--on-dark-muted); font-size: 15px; line-height: 1.5; }
+  .ways :global(code) { color: var(--cyan); }
+  .people { margin-top: 56px; }
+  .people h3 { font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--on-dark-faint); font-weight: 600; }
+  .people ul { list-style: none; padding: 0; margin: 16px 0 0; display: flex; flex-wrap: wrap; gap: 10px; }
+  .people img { border-radius: 50%; box-shadow: 0 0 0 2px var(--navy), 0 0 0 3.5px rgba(173, 254, 253, 0.18); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .people a:hover img { transform: translateY(-2px); box-shadow: 0 0 0 2px var(--navy), 0 0 0 3.5px var(--teal); }
+  @media (max-width: 900px) { .ways { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .ways { grid-template-columns: 1fr; } }
+</style>

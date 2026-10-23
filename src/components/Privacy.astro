@@ -1,0 +1,40 @@
+---
+import Icon from './Icon.astro';
+import { getStrings } from '../i18n';
+const t = getStrings(Astro.currentLocale);
+const p = t.privacy;
+---
+<section class="section dark" id="privacy">
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="eyebrow">{p.eyebrow}</p>
+      <h2>{p.title}</h2>
+      <p class="lead">{p.lead}</p>
+    </div>
+    <ul class="tiles">
+      {p.items.map((item, i) => (
+        <li class="tile reveal" style={`transition-delay:${(i % 3) * 80}ms`}>
+          <span class="ic"><Icon name={item.icon} size={22} /></span>
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+        </li>
+      ))}
+    </ul>
+    <p class="site reveal">{p.site} <a href="/privacy/">{p.policy}</a></p>
+  </div>
+</section>
+<style>
+  .tiles { list-style: none; padding: 0; margin: 56px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .tile { background: linear-gradient(180deg, rgba(13, 119, 119, 0.16), rgba(13, 119, 119, 0.04)); border: 1px solid rgba(173, 254, 253, 0.1); border-radius: var(--radius); padding: 26px; }
+  .ic { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: rgba(32, 223, 217, 0.12); color: var(--teal); margin-bottom: 16px; }
+  h3 { font-size: 18px; }
+  .tile p { margin: 8px 0 0; color: var(--on-dark-muted); font-size: 15px; line-height: 1.55; }
+  .site { margin: 40px auto 0; text-align: center; color: var(--on-dark-faint); font-size: 15px; max-width: 640px; }
+  @media (max-width: 900px) { .tiles { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) {
+    .tiles { grid-template-columns: 1fr; gap: 12px; }
+    .tile { display: grid; grid-template-columns: 44px 1fr; column-gap: 16px; padding: 18px; }
+    .ic { grid-row: span 2; margin: 0; }
+    .tile p { margin-top: 4px; }
+  }
+</style>
