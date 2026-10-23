@@ -42,11 +42,9 @@ export default {
     leave: 'Leave app',
     keepScrolling: 'Keep scrolling',
     level: 'Level',
-    of: 'of',
     wrong: 'Not quite. Try again.',
     empty: 'Type a number first.',
     unlocked: 'Unlocked. The next one will be harder.',
-    maxed: 'Unlocked. That was level 15, the hardest there is.',
     leftApp: 'Good call. Each break brings the level back down.',
     atMin: "Good call. You're at the easiest level already.",
   },
@@ -75,19 +73,13 @@ export default {
     eyebrow: 'Progressive difficulty',
     title: 'The more you scroll, the harder it gets.',
     titleB: 'Step away, and it gets easier again.',
-    lead: 'Every challenge you solve makes the next one a level harder, up to 15. Time away brings it back down, but never below the starting level you picked.',
-    levels: [
-      { level: 1, label: 'Level 1', eq: '3 + 4' },
-      { level: 5, label: 'Level 5', eq: '27 + 48' },
-      { level: 10, label: 'Level 10', eq: '? × 7 = 56' },
-      { level: 15, label: 'Level 15', eq: '48 × 37' },
-    ],
+    lead: 'Every challenge you solve makes the next one a level harder. Time away brings it back down, but never below the starting level you picked.',
     up: { title: 'Keep scrolling', text: 'Each solved challenge adds a level.' },
     down: {
       title: 'Take a break',
       text: 'Every two challenge intervals away removes a level. With challenges every 15 minutes, that is one level per 30 minutes.',
     },
-    alt: 'PlugBrain home screen: PlugBrain is on, 11 minutes left before the next challenge, next challenge level 4 of 15',
+    alt: 'PlugBrain home screen: PlugBrain is on, 11 minutes left before the next challenge, next challenge at level 4',
   },
   contrast: {
     eyebrow: 'Why math?',
@@ -161,7 +153,7 @@ export default {
     items: [
       {
         q: 'How does the difficulty go up and down?',
-        a: 'Every challenge you solve makes the next one a level harder, up to level 15. When you stay away from your blocked apps, it comes back down by one level for every two challenge intervals you spend away. With a 15-minute interval, that is one level every 30 minutes. It never drops below the minimum difficulty you chose.',
+        a: 'Every challenge you solve makes the next one a level harder. When you stay away from your blocked apps, it comes back down by one level for every two challenge intervals you spend away. With a 15-minute interval, that is one level every 30 minutes. It never drops below the minimum difficulty you chose.',
       },
       {
         q: 'Can I choose how hard it starts?',

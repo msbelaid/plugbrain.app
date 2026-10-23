@@ -4,7 +4,6 @@
 import Icon from './Icon.astro';
 import { getStrings } from '../i18n';
 const t = getStrings(Astro.currentLocale);
-const MAX = 15;
 ---
 <div class="demo" data-demo data-strings={JSON.stringify(t.demo)}>
   <div class="phone">
@@ -22,10 +21,7 @@ const MAX = 15;
         </form>
         <p class="feedback" data-feedback role="status"></p>
         <button class="leave" type="button" data-leave><Icon name="log-out" size={18} /> {t.demo.leave}</button>
-        <div class="meter" aria-hidden="true">
-          <div class="cells">{Array.from({ length: MAX }, (_, i) => <i data-cell={i + 1}></i>)}</div>
-        </div>
-        <p class="level"><span data-level-text>{t.demo.level} 3 {t.demo.of} {MAX}</span></p>
+        <p class="level" data-level aria-live="polite"><span data-level-text>{t.demo.level} 3</span></p>
       </div>
     </div>
   </div>
@@ -33,7 +29,7 @@ const MAX = 15;
 </div>
 
 <script>
-  const MAX = 15;
+  const MAX = 15; // the demo stops climbing here, but never says so
   const rnd = (a: number, b: number) => a + Math.floor(Math.random() * (b - a + 1));
 
   // One generator per level: [question, answer]. No square roots on purpose.
@@ -65,15 +61,22 @@ const MAX = 15;
     const leave = root.querySelector<HTMLButtonElement>('[data-leave]')!;
     const feedback = root.querySelector<HTMLElement>('[data-feedback]')!;
     const levelText = root.querySelector<HTMLElement>('[data-level-text]')!;
-    const cells = root.querySelectorAll<HTMLElement>('[data-cell]');
+    const levelPill = root.querySelector<HTMLElement>('[data-level]')!;
     const card = form;
 
     let level = 3;
     let answer = 0;
 
+    let shown = level;
     const paint = () => {
-      levelText.textContent = `${s.level} ${level} ${s.of} ${MAX}`;
-      cells.forEach((c) => c.classList.toggle('on', Number(c.dataset.cell) <= level));
+      levelText.textContent = `${s.level} ${level}`;
+      if (level !== shown) {
+        levelPill.dataset.dir = level > shown ? 'up' : 'down';
+        levelPill.classList.remove('bump');
+        void levelPill.offsetWidth; // restart the animation
+        levelPill.classList.add('bump');
+        shown = level;
+      }
     };
     const ask = () => {
       const [text, value] = levels[level - 1]();
@@ -97,14 +100,13 @@ const MAX = 15;
       const raw = input.value.trim().replace(/[^\d-]/g, '');
       if (!raw) { say(s.empty, 'warn'); input.focus(); return; }
       if (Number(raw) === answer) {
-        const wasMax = level === MAX;
         level = Math.min(MAX, level + 1);
         paint();
         card.classList.add('solved');
         input.disabled = true;
         check.hidden = true;
         more.hidden = false;
-        say(wasMax ? s.maxed : s.unlocked, 'ok');
+        say(s.unlocked, 'ok');
         more.focus({ preventScroll: true });
       } else {
         say(s.wrong, 'warn');
@@ -150,13 +152,11 @@ const MAX = 15;
   .feedback[data-kind='warn'] { color: #bd100c; }
   .leave { width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font: inherit; font-weight: 600; font-size: 15px; color: #fff; background: linear-gradient(90deg, #26bfbf, #015959); border: 0; border-radius: 999px; padding: 12px 14px; cursor: pointer; }
   .leave:hover { filter: brightness(1.08); }
-  .meter { width: 100%; margin-top: auto; padding-top: 14px; }
-  .cells { display: grid; grid-template-columns: repeat(15, 1fr); gap: 3px; }
-  .cells i { display: block; aspect-ratio: 1; border-radius: 3px; background: #dfe0e0; transition: background 0.35s ease, transform 0.35s ease; }
-  .cells i.on { background: #20dfd9; }
-  .cells i.on:nth-child(n + 6) { background: #01abab; }
-  .cells i.on:nth-child(n + 11) { background: #0d7777; }
-  .level { margin: 8px 0 0; font-size: 12px; color: #4f6666; font-weight: 500; }
+  .level { margin: auto 0 0; font-size: 13px; font-weight: 600; color: #015959; background: #e5ffff; border: 1.5px solid #81efef; border-radius: 999px; padding: 4px 14px; }
+  .level.bump { animation: bump 0.5s ease; }
+  .level.bump[data-dir='down'] { animation-name: bump-down; }
+  @keyframes bump { 40% { transform: translateY(-5px) scale(1.08); background: #20dfd9; } }
+  @keyframes bump-down { 40% { transform: translateY(5px) scale(0.94); } }
   .hint { margin: 0; font-size: 14px; color: var(--on-dark-faint); text-align: center; max-width: 300px; }
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .shake { animation: shake 0.4s ease; }
