@@ -77,7 +77,7 @@ export default {
     up: { title: 'Keep scrolling', text: 'Each solved challenge adds a level.' },
     down: {
       title: 'Take a break',
-      text: 'Every two challenge intervals away removes a level. With challenges every 15 minutes, that is one level per 30 minutes.',
+      text: 'The longer you stay away from distracting apps, the easier the next challenge gets.',
     },
     alt: 'PlugBrain home screen: PlugBrain is on, 11 minutes left before the next challenge, next challenge at level 4',
   },
