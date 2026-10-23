@@ -206,6 +206,10 @@ export default {
       { title: 'Talk to us', text: 'Ideas, feedback and help on r/PlugBrain.', href: 'https://www.reddit.com/r/PlugBrain/' },
     ],
     contributors: 'Contributors',
+    credits: [
+      { role: 'UX & UI design', name: 'Hichem Dahaoui', login: 'HichemDahaoui' },
+      { role: 'App icon', name: 'travis-jeans', login: 'travis-jeans' },
+    ],
   },
   footer: {
     download: 'Download',
@@ -216,6 +220,8 @@ export default {
     privacy: 'Privacy policy',
     license: 'Free software under the GPL-3.0 license.',
     made: 'Made in Algeria with care.',
+    design: 'Design by',
+    icon: 'icon by',
     version: 'Latest version',
   },
   privacyPage: {

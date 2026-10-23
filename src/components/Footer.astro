@@ -13,7 +13,11 @@ const year = new Date().getFullYear();
     <div class="about">
       <Logo size={40} />
       <p>{t.hero.tagline}</p>
-      <p class="small">{t.footer.made}<br />{t.footer.license}</p>
+      <p class="small">
+        {t.footer.made}<br />
+        {t.footer.design} <a href="https://github.com/HichemDahaoui">Hichem Dahaoui</a>, {t.footer.icon} <a href="https://github.com/travis-jeans">travis-jeans</a>.<br />
+        {t.footer.license}
+      </p>
     </div>
     <div>
       <h2>{t.footer.download}</h2>
@@ -42,6 +46,7 @@ const year = new Date().getFullYear();
   .grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
   .about p { margin: 16px 0 0; max-width: 320px; }
   .small { font-size: 14px; color: var(--on-dark-faint); }
+  .about .small a { white-space: nowrap; color: var(--on-dark-muted); }
   h2 { font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--on-dark); margin-bottom: 14px; }
   ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
   a { color: var(--on-dark-muted); text-decoration: none; }

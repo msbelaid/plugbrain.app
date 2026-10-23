@@ -29,6 +29,14 @@ const icons = ['globe', 'puzzle', 'palette', 'message'];
         </li>
       ))}
     </ul>
+    <ul class="credits reveal">
+      {c.credits.map((cr) => (
+        <li>
+          <img src={`/contributors/${cr.login}.webp`} width="56" height="56" alt="" loading="lazy" />
+          <span><small>{cr.role}</small><a href={`https://github.com/${cr.login}`}>{cr.name}</a></span>
+        </li>
+      ))}
+    </ul>
     <div class="people reveal">
       <h3>{c.contributors}</h3>
       <ul>
@@ -51,7 +59,13 @@ const icons = ['globe', 'puzzle', 'palette', 'message'];
   .ways a:hover :global(.go) { transform: translateX(3px); }
   .ways p { margin: 8px 0 0; color: var(--on-dark-muted); font-size: 15px; line-height: 1.5; }
   .ways :global(code) { color: var(--cyan); }
-  .people { margin-top: 56px; }
+  .credits { list-style: none; padding: 0; margin: 48px 0 0; display: flex; flex-wrap: wrap; gap: 16px; }
+  .credits li { display: flex; align-items: center; gap: 14px; padding: 12px 22px 12px 12px; border-radius: 999px; background: rgba(32, 223, 217, 0.06); border: 1px solid rgba(173, 254, 253, 0.12); }
+  .credits img { border-radius: 50%; }
+  .credits small { display: block; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--on-dark-faint); font-weight: 600; }
+  .credits a { color: var(--on-dark); font-weight: 600; text-decoration: none; font-size: 17px; }
+  .credits a:hover { color: var(--teal); }
+  .people { margin-top: 40px; }
   .people h3 { font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--on-dark-faint); font-weight: 600; }
   .people ul { list-style: none; padding: 0; margin: 16px 0 0; display: flex; flex-wrap: wrap; gap: 10px; }
   .people img { border-radius: 50%; box-shadow: 0 0 0 2px var(--navy), 0 0 0 3.5px rgba(173, 254, 253, 0.18); transition: transform 0.2s ease, box-shadow 0.2s ease; }
