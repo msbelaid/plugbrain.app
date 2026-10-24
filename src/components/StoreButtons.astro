@@ -1,0 +1,19 @@
+---
+import Icon from './Icon.astro';
+import { getStrings } from '../i18n';
+import { links } from '../data/links';
+const t = getStrings(Astro.currentLocale);
+---
+<div class="stores">
+  <a class="store store-primary" href={links.play}>
+    <Icon name="play" />
+    <span><small>{t.stores.getItOn}</small><strong>{t.stores.play}</strong></span>
+  </a>
+  <a class="store store-secondary" href={links.fdroid}>
+    <Icon name="package" />
+    <span><small>{t.stores.getItOn}</small><strong>{t.stores.fdroid}</strong></span>
+  </a>
+</div>
+<p class="stores-more">
+  {t.stores.alsoOn} <a href={links.izzy}>{t.stores.izzy}</a> {t.stores.or} <a href={links.apk}>{t.stores.apk}</a>
+</p>

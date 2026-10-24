@@ -1,0 +1,26 @@
+---
+import Phone from './Phone.astro';
+import { getStrings } from '../i18n';
+import { screens } from '../data/screens';
+const t = getStrings(Astro.currentLocale);
+---
+<section class="section alt" id="screens">
+  <div class="wrap center reveal">
+    <p class="eyebrow">{t.screens.eyebrow}</p>
+    <h2>{t.screens.title}</h2>
+  </div>
+  <div class="strip" tabindex="0" role="region" aria-label={t.screens.title}>
+    {screens.map((s, i) => <Phone src={s} alt={t.screens.alts[i]} width={230} class="shot" />)}
+  </div>
+</section>
+<style>
+  .section { padding-bottom: 64px; }
+  .strip {
+    display: flex; gap: 28px; overflow-x: auto; scroll-snap-type: x mandatory;
+    padding: 56px max(24px, calc((100vw - var(--max)) / 2 + 24px)) 40px;
+    scrollbar-width: thin; scrollbar-color: var(--teal-700) transparent;
+  }
+  .strip :global(.shot) { flex: 0 0 230px; scroll-snap-align: center; }
+  .strip:focus-visible { outline-offset: -3px; }
+  @media (max-width: 600px) { .strip { gap: 18px; padding-left: 16px; padding-right: 16px; } .strip :global(.shot) { flex-basis: 200px; } }
+</style>

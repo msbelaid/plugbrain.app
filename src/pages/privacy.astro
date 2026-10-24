@@ -1,0 +1,63 @@
+---
+// Mirrors PRIVACY_POLICY.md in msbelaid/PlugBrain. Keep the two in sync.
+import Base from '../layouts/Base.astro';
+import { getStrings } from '../i18n';
+const t = getStrings(Astro.currentLocale);
+const p = t.privacyPage;
+---
+<Base title={`${p.title} · PlugBrain`} description={p.metaDescription}>
+  <article class="wrap doc">
+    <a class="back" href="/">← {p.back}</a>
+    <h1>{p.title}</h1>
+    <p class="updated">{p.updated}</p>
+    <p class="intro"><strong>PlugBrain</strong> blocks apps and uses math challenges to reduce screen time.</p>
+
+    <h2>1. Data collection</h2>
+    <p>The PlugBrain app:</p>
+    <ul>
+      <li><strong>Does not collect any personal data</strong> (name, email address, location, etc.).</li>
+      <li><strong>Does not require a user account.</strong></li>
+      <li><strong>Does not send any data to external servers.</strong></li>
+    </ul>
+
+    <h2>2. Permissions used</h2>
+    <p>Some permissions are required <strong>only to ensure the proper functionality</strong> of the app:</p>
+    <ul>
+      <li><code>android.permission.SYSTEM_ALERT_WINDOW</code>: used to display the challenge screen on top of other apps.</li>
+      <li><code>android.permission.PACKAGE_USAGE_STATS</code>: used to detect usage time of selected apps.</li>
+      <li><code>android.accessibilityservice.AccessibilityService</code>: used exclusively to detect when a blocked app is opened and to show a math challenge before allowing access. PlugBrain does not use Accessibility to read content, capture input, or collect any user data.</li>
+      <li><strong>No internet access is requested or required by the app.</strong></li>
+    </ul>
+
+    <h2>3. Local data usage</h2>
+    <p>PlugBrain may store user preferences <strong>locally</strong> (such as selected blocked apps). This data never leaves the device and can be deleted by uninstalling the app.</p>
+
+    <h2>4. Security</h2>
+    <p>We are committed to protecting user privacy. Since PlugBrain does not collect or transmit data, the privacy risks are minimal.</p>
+
+    <h2>5. Third-party services</h2>
+    <ul>
+      <li>The app contains <strong>no advertisements</strong>.</li>
+      <li>The app does <strong>not use any third-party services</strong> for analytics or tracking.</li>
+    </ul>
+
+    <h2>6. This website</h2>
+    <p>plugbrain.app sets no cookies and uses no analytics or third-party scripts. Fonts and images are served from this site. It is hosted on GitHub Pages, which may keep standard server logs; see <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>.</p>
+
+    <h2>7. Policy changes</h2>
+    <p>Any changes to this privacy policy will be posted on this page. Users will be notified through an app update if significant changes are made.</p>
+
+    <h2>8. Contact</h2>
+    <p>For any questions regarding this privacy policy, feel free to contact us: <a href="mailto:belaid.mohammed.said@gmail.com">belaid.mohammed.said@gmail.com</a></p>
+  </article>
+</Base>
+<style>
+  .doc { max-width: 760px; padding-top: 56px; padding-bottom: 96px; }
+  .back { display: inline-block; margin-bottom: 28px; text-decoration: none; font-size: 15px; }
+  h1 { font-size: clamp(36px, 5vw, 52px); }
+  .updated { color: var(--muted); margin: 10px 0 32px; font-size: 15px; }
+  .intro { font-size: 19px; }
+  h2 { font-size: 22px; margin: 40px 0 12px; }
+  ul { padding-left: 22px; display: grid; gap: 8px; }
+  code { word-break: break-word; }
+</style>

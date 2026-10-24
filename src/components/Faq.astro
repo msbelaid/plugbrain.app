@@ -1,0 +1,34 @@
+---
+import Icon from './Icon.astro';
+import { getStrings } from '../i18n';
+const t = getStrings(Astro.currentLocale);
+---
+<section class="section alt" id="faq">
+  <div class="wrap grid">
+    <div class="head reveal">
+      <p class="eyebrow">{t.faq.eyebrow}</p>
+      <h2>{t.faq.title}</h2>
+    </div>
+    <div class="list reveal">
+      {t.faq.items.map((item) => (
+        <details>
+          <summary>{item.q}<Icon name="plus" size={20} class="pm" /></summary>
+          <p set:html={item.a} />
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 64px; align-items: start; }
+  .head { position: sticky; top: 110px; }
+  details { border-bottom: 1px solid var(--line); }
+  details:first-child { border-top: 1px solid var(--line); }
+  summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 0; font-weight: 500; font-size: 18px; }
+  summary::-webkit-details-marker { display: none; }
+  summary:hover { color: var(--accent); }
+  summary :global(.pm) { flex: none; color: var(--accent); transition: transform 0.25s ease; }
+  details[open] summary :global(.pm) { transform: rotate(45deg); }
+  details p { margin: -6px 0 24px; color: var(--muted); max-width: 62ch; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; gap: 32px; } .head { position: static; } }
+</style>
