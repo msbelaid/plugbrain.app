@@ -22,16 +22,21 @@ const t = getStrings(Astro.currentLocale);
         <p class="feedback" data-feedback role="status"></p>
         <button class="leave" type="button" data-leave><Icon name="log-out" size={18} /> {t.demo.leave}</button>
         <div class="gauge" data-gauge role="img" aria-label={t.demo.difficulty}>
-          <svg viewBox="0 0 120 68" aria-hidden="true">
+          <svg viewBox="0 0 160 92" aria-hidden="true">
             <defs>
-              <linearGradient id="demo-gauge" x1="0" x2="1" y1="0" y2="0">
-                <stop offset="0" stop-color="#81efef" />
-                <stop offset="0.55" stop-color="#01abab" />
-                <stop offset="1" stop-color="#015959" />
+              <linearGradient id="demo-gauge" gradientUnits="userSpaceOnUse" x1="14" y1="0" x2="146" y2="0">
+                <stop offset="0" stop-color="#2fbf71" />
+                <stop offset="0.5" stop-color="#f2c230" />
+                <stop offset="1" stop-color="#e4572e" />
               </linearGradient>
             </defs>
-            <path class="track" d="M12 60 A48 48 0 0 1 108 60" pathLength="100" />
-            <path class="fill" data-gauge-fill d="M12 60 A48 48 0 0 1 108 60" pathLength="100" stroke="url(#demo-gauge)" />
+            <path class="track" d="M16 80 A64 64 0 0 1 144 80" pathLength="100" />
+            <path class="fill" data-gauge-fill d="M16 80 A64 64 0 0 1 144 80" pathLength="100" stroke="url(#demo-gauge)" />
+            <path class="delta" data-gauge-delta d="M16 80 A64 64 0 0 1 144 80" pathLength="100" />
+            <g class="needle" data-gauge-needle>
+              <path d="M80 80 L80 30" />
+              <circle cx="80" cy="80" r="7" />
+            </g>
           </svg>
           <p class="label"><span>{t.demo.difficulty}</span><em data-gauge-dir></em></p>
         </div>
@@ -76,6 +81,8 @@ const t = getStrings(Astro.currentLocale);
     const gauge = root.querySelector<HTMLElement>('[data-gauge]')!;
     const gaugeFill = root.querySelector<SVGPathElement>('[data-gauge-fill]')!;
     const gaugeDir = root.querySelector<HTMLElement>('[data-gauge-dir]')!;
+    const gaugeDelta = root.querySelector<SVGPathElement>('[data-gauge-delta]')!;
+    const needle = root.querySelector<SVGGElement>('[data-gauge-needle]')!;
     const card = form;
 
     let level = 3;
@@ -84,10 +91,17 @@ const t = getStrings(Astro.currentLocale);
     let shown = level;
     const paint = () => {
       // The arc shows how hard it is now, without ever printing a level number.
-      const pct = 8 + (92 * (level - 1)) / (MAX - 1);
+      const at = (l: number) => 6 + (94 * (l - 1)) / (MAX - 1);
+      const pct = at(level);
       gaugeFill.style.strokeDashoffset = String(100 - pct);
+      needle.style.transform = `rotate(${(pct / 100) * 180 - 90}deg)`;
+      gauge.dataset.zone = pct < 40 ? 'easy' : pct < 72 ? 'medium' : 'hard';
       if (level !== shown) {
         const up = level > shown;
+        // Highlight the stretch of arc that just changed.
+        const from = Math.min(at(shown), pct), to = Math.max(at(shown), pct);
+        gaugeDelta.style.strokeDasharray = `${to - from} 200`;
+        gaugeDelta.style.strokeDashoffset = String(-from);
         gauge.dataset.dir = up ? 'up' : 'down';
         gaugeDir.textContent = up ? `↑ ${s.harder}` : `↓ ${s.easier}`;
         gauge.classList.remove('bump');
@@ -170,19 +184,26 @@ const t = getStrings(Astro.currentLocale);
   .feedback[data-kind='warn'] { color: #bd100c; }
   .leave { width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font: inherit; font-weight: 600; font-size: 15px; color: #fff; background: linear-gradient(90deg, #26bfbf, #015959); border: 0; border-radius: 999px; padding: 12px 14px; cursor: pointer; }
   .leave:hover { filter: brightness(1.08); }
-  .gauge { margin-top: auto; width: 128px; display: flex; flex-direction: column; align-items: center; }
+  .gauge { margin-top: auto; width: 168px; display: flex; flex-direction: column; align-items: center; }
   .gauge svg { width: 100%; height: auto; overflow: visible; }
-  .gauge path { fill: none; stroke-width: 11; stroke-linecap: round; }
+  .gauge path { fill: none; stroke-width: 14; stroke-linecap: round; }
   .gauge .track { stroke: #e6eded; }
-  .gauge .fill { stroke-dasharray: 100; stroke-dashoffset: 100; transition: stroke-dashoffset 0.6s cubic-bezier(0.3, 0.7, 0.2, 1); }
-  .gauge .label { margin: -4px 0 0; display: flex; flex-direction: column; align-items: center; line-height: 1.2; }
+  .gauge .fill { stroke-dasharray: 100 200; stroke-dashoffset: 100; transition: stroke-dashoffset 0.7s cubic-bezier(0.3, 0.7, 0.2, 1); }
+  .gauge .delta { stroke: #fff; stroke-width: 6; opacity: 0; }
+  .gauge.bump .delta { animation: flash 1.4s ease; }
+  .gauge[data-dir='down'] .delta { stroke: #8fa5a5; }
+  .gauge .needle { transform-origin: 80px 80px; transform: rotate(-90deg); transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .gauge .needle path { stroke: #0f2a2e; stroke-width: 4; }
+  .gauge .needle circle { fill: #0f2a2e; stroke: #fff; stroke-width: 3; }
+  .gauge .label { margin: 2px 0 0; display: flex; flex-direction: column; align-items: center; line-height: 1.25; }
   .gauge .label span { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #4f6666; }
-  .gauge .label em { font-style: normal; font-size: 12px; font-weight: 600; min-height: 15px; color: #008181; opacity: 0; }
-  .gauge[data-dir='down'] .label em { color: #4f6666; }
-  .gauge.bump .label em { animation: hint 1.8s ease forwards; }
-  .gauge.bump svg { animation: bump 0.5s ease; }
+  .gauge .label em { font-style: normal; font-size: 13px; font-weight: 700; min-height: 16px; opacity: 0; }
+  .gauge[data-zone='easy'] .label em { color: #1f9a57; }
+  .gauge[data-zone='medium'] .label em { color: #b8870b; }
+  .gauge[data-zone='hard'] .label em { color: #c9401c; }
+  .gauge.bump .label em { animation: hint 2s ease forwards; }
   @keyframes hint { 10%, 75% { opacity: 1; } 100% { opacity: 0; } }
-  @keyframes bump { 40% { transform: scale(1.06); } }
+  @keyframes flash { 0%, 100% { opacity: 0; } 15%, 45% { opacity: 0.85; } 30% { opacity: 0.3; } }
   .hint { margin: 0; font-size: 14px; color: var(--on-dark-faint); text-align: center; max-width: 300px; }
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .shake { animation: shake 0.4s ease; }
