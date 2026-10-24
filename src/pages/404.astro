@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import { getStrings } from '../i18n';
 const t = getStrings(Astro.currentLocale);
 ---
-<Base title={`${t.notFound.title} · PlugBrain`}>
+<Base title={`${t.notFound.title} · PlugBrain`} noindex>
   <section class="nf">
     <div class="wrap">
       <img src="/logo-dark.svg" width="120" height="120" alt="" />

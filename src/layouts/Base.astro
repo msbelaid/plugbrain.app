@@ -4,26 +4,45 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { getStrings, dirFor } from '../i18n';
-import { links } from '../data/links';
+import lexendLatin from '@fontsource-variable/lexend/files/lexend-latin-wght-normal.woff2?url';
 
-interface Props { title?: string; description?: string }
+interface Props {
+  title?: string;
+  description?: string;
+  /** Keep the page out of search results (e.g. the 404 page). */
+  noindex?: boolean;
+  /** Page-specific schema.org nodes, added to the site-wide graph. */
+  schema?: Record<string, unknown>[];
+}
 const locale = Astro.currentLocale ?? 'en';
 const t = getStrings(locale);
-const { title = t.meta.title, description = t.meta.description } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site);
-const ogImage = new URL('/og.png', Astro.site);
+const { title = t.meta.title, description = t.meta.description, noindex = false, schema = [] } = Astro.props;
+const site = Astro.site!;
+const canonical = new URL(Astro.url.pathname, site);
+const ogImage = new URL('/og.png', site);
+const ogLocale = ({ en: 'en_US' } as Record<string, string>)[locale] ?? locale;
 
+// Site-wide structured data. Pages add their own nodes (the app, the FAQ) via `schema`.
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: 'PlugBrain',
-  operatingSystem: 'Android 9+',
-  applicationCategory: 'LifestyleApplication',
-  description: t.meta.description,
-  url: Astro.site?.toString(),
-  downloadUrl: links.play,
-  license: 'https://www.gnu.org/licenses/gpl-3.0.html',
-  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': new URL('/#website', site).href,
+      url: site.href,
+      name: 'PlugBrain',
+      description: t.meta.description,
+      inLanguage: locale,
+      publisher: { '@id': new URL('/#author', site).href },
+    },
+    {
+      '@type': 'Person',
+      '@id': new URL('/#author', site).href,
+      name: 'Mohammed-Said Belaid',
+      url: 'https://github.com/msbelaid',
+    },
+    ...schema,
+  ],
 };
 ---
 <!doctype html>
@@ -33,20 +52,28 @@ const jsonLd = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    <link rel="sitemap" href="/sitemap.xml" />
+    <link rel="preload" href={lexendLatin} as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#001824" />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content={ogLocale} />
     <meta property="og:site_name" content="PlugBrain" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1024" />
     <meta property="og:image:height" content="500" />
     <meta property="og:image:alt" content="PlugBrain: Solve a little math. Scroll a lot less." />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="PlugBrain: Solve a little math. Scroll a lot less." />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script is:inline>document.documentElement.classList.add('js');</script>
   </head>

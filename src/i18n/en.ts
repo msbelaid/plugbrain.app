@@ -3,9 +3,9 @@
 
 export default {
   meta: {
-    title: 'PlugBrain: solve a little math, scroll a lot less',
+    title: 'PlugBrain: free Android app blocker with math challenges',
     description:
-      'PlugBrain is a free, open-source Android app that locks distracting apps behind a quick math challenge. The more you scroll, the harder the math. No ads, no tracking, no internet.',
+      'Free, open-source Android app blocker that locks distracting apps behind a quick math challenge. The more you scroll, the harder it gets. No ads, no tracking.',
   },
   nav: {
     how: 'How it works',
@@ -25,7 +25,7 @@ export default {
     or: 'or',
   },
   hero: {
-    eyebrow: 'Free & open source · Android',
+    eyebrow: 'Free, open-source app blocker',
     title: 'Plug your brain back in.',
     tagline: 'Solve a little math. Scroll a lot less.',
     // html
@@ -228,7 +228,7 @@ export default {
   },
   privacyPage: {
     title: 'Privacy policy',
-    metaDescription: 'PlugBrain collects no personal data, needs no account and has no internet permission.',
+    metaDescription: 'PlugBrain privacy policy: the app collects no personal data, needs no account, shows no ads and has no internet permission.',
     updated: 'Last updated: October 2, 2025',
     back: 'Back to home',
   },
