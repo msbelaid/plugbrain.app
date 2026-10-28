@@ -1,8 +1,9 @@
 ---
 import Phone from './Phone.astro';
 import { getStrings } from '../i18n';
-import { apps, difficulty, challenge } from '../data/screens';
+import { screensFor } from '../data/screens';
 const t = getStrings(Astro.currentLocale);
+const { apps, difficulty, challenge } = screensFor(Astro.currentLocale);
 const shots = [apps, difficulty, challenge];
 ---
 <section class="section" id="how">
@@ -33,13 +34,13 @@ const shots = [apps, difficulty, challenge];
   .text p { color: var(--muted); margin: 10px auto 0; max-width: 32ch; }
   @media (max-width: 900px) {
     .steps { grid-template-columns: 1fr; gap: 64px; }
-    .step { flex-direction: row; text-align: left; gap: 28px; align-items: center; }
+    .step { flex-direction: row; text-align: start; gap: 28px; align-items: center; }
     .step :global(.phone) { margin: 0; flex: 0 0 42%; }
-    .text p { margin-left: 0; }
+    .text p { margin-inline-start: 0; }
   }
   @media (max-width: 520px) {
     .step { flex-direction: column; text-align: center; }
     .step :global(.phone) { flex: none; width: 54%; }
-    .text p { margin-left: auto; }
+    .text p { margin-inline-start: auto; }
   }
 </style>

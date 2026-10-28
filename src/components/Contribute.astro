@@ -49,7 +49,7 @@ const icons = ['globe', 'puzzle', 'palette', 'message'];
 </section>
 <style>
   .top { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
-  .count { display: inline-flex; align-items: center; gap: 3px; padding-left: 10px; margin-left: 4px; border-left: 1px solid rgba(0, 24, 36, 0.25); }
+  .count { display: inline-flex; align-items: center; gap: 3px; padding-inline-start: 10px; margin-inline-start: 4px; border-inline-start: 1px solid rgba(0, 24, 36, 0.25); }
   .ways { list-style: none; padding: 0; margin: 56px 0 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
   .ways a { display: block; height: 100%; text-decoration: none; color: var(--on-dark); border: 1px solid rgba(173, 254, 253, 0.12); border-radius: var(--radius); padding: 24px; transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease; }
   .ways a:hover { border-color: var(--teal); background: rgba(32, 223, 217, 0.05); transform: translateY(-2px); color: var(--on-dark); }
@@ -57,6 +57,7 @@ const icons = ['globe', 'puzzle', 'palette', 'message'];
   h3 { font-size: 18px; display: flex; align-items: center; gap: 6px; }
   h3 :global(.go) { color: var(--teal); transition: transform 0.2s ease; }
   .ways a:hover :global(.go) { transform: translateX(3px); }
+  :global([dir='rtl']) .ways a:hover :global(.go) { transform: scaleX(-1) translateX(3px); }
   .ways p { margin: 8px 0 0; color: var(--on-dark-muted); font-size: 15px; line-height: 1.5; }
   .ways :global(code) { color: var(--cyan); }
   .credits { list-style: none; padding: 0; margin: 48px 0 0; display: flex; flex-wrap: wrap; gap: 16px; }

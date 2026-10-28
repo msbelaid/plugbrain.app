@@ -1,8 +1,9 @@
 ---
 import Phone from './Phone.astro';
 import { getStrings } from '../i18n';
-import { screens } from '../data/screens';
+import { screensFor } from '../data/screens';
 const t = getStrings(Astro.currentLocale);
+const screens = screensFor(Astro.currentLocale).list;
 ---
 <section class="section alt" id="screens">
   <div class="wrap center reveal">

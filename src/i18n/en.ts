@@ -6,6 +6,14 @@ export default {
     title: 'PlugBrain: free Android app blocker with math challenges',
     description:
       'Free, open-source Android app blocker that locks distracting apps behind a quick math challenge. The more you scroll, the harder it gets. No ads, no tracking.',
+    imageAlt: 'PlugBrain: Solve a little math. Scroll a lot less.',
+    // Shown to search engines only, in the app's schema.org data.
+    features: [
+      'Locks distracting apps behind a math challenge',
+      'Difficulty rises the more you scroll and eases off when you stay away',
+      'No internet permission, no ads, no tracking, no account',
+      'Free and open source (GPL-3.0)',
+    ],
   },
   nav: {
     how: 'How it works',
@@ -14,6 +22,10 @@ export default {
     faq: 'FAQ',
     getApp: 'Get the app',
     skip: 'Skip to content',
+    main: 'Main',
+    home: 'PlugBrain home',
+    // {stars} is replaced with the GitHub star count.
+    stars: 'GitHub, {stars} stars',
   },
   stores: {
     getItOn: 'Get it on',
@@ -222,9 +234,12 @@ export default {
     privacy: 'Privacy policy',
     license: 'Free software under the GPL-3.0 license.',
     made: 'Made in Algeria with care.',
-    design: 'Design by',
-    icon: 'icon by',
-    version: 'Latest version',
+    // html
+    credit: 'Design by <a href="https://github.com/HichemDahaoui">Hichem Dahaoui</a>, icon by <a href="https://github.com/travis-jeans">travis-jeans</a>.',
+    // {version} is replaced with the latest release, e.g. 1.6.0.
+    version: 'Latest version: {version}',
+    language: 'Language',
+    copyright: 'PlugBrain contributors',
   },
   privacyPage: {
     title: 'Privacy policy',

@@ -1,11 +1,24 @@
-// Real 1.6.0 screenshots, copied from msbelaid/PlugBrain fastlane/metadata/android/en-US/images/phoneScreenshots.
-import s1 from '../assets/screens/1.png';
-import s2 from '../assets/screens/2.png';
-import s3 from '../assets/screens/3.png';
-import s4 from '../assets/screens/4.png';
-import s5 from '../assets/screens/5.png';
-import s6 from '../assets/screens/6.png';
-import s7 from '../assets/screens/7.png';
+import type { ImageMetadata } from 'astro';
 
-export const screens = [s1, s2, s3, s4, s5, s6, s7];
-export const welcome = s1, apps = s2, home = s3, challenge = s4, interval = s5, difficulty = s6, dark = s7;
+// Real 1.6.0 screenshots, copied from msbelaid/PlugBrain fastlane/metadata/android/<folder>/images/phoneScreenshots:
+// en-US into en/, fr-FR into fr/ and ar into ar/. Every locale has the same seven screens, in the same order.
+const files = import.meta.glob<ImageMetadata>('../assets/screens/*/*.png', { eager: true, import: 'default' });
+
+export interface Screens {
+  list: ImageMetadata[];
+  welcome: ImageMetadata;
+  apps: ImageMetadata;
+  home: ImageMetadata;
+  challenge: ImageMetadata;
+  interval: ImageMetadata;
+  difficulty: ImageMetadata;
+  dark: ImageMetadata;
+}
+
+/** The screenshots in the page's language, or the English ones if there are none. */
+export function screensFor(locale: string | undefined): Screens {
+  const folder = locale && files[`../assets/screens/${locale}/1.png`] ? locale : 'en';
+  const list = [1, 2, 3, 4, 5, 6, 7].map((n) => files[`../assets/screens/${folder}/${n}.png`]);
+  const [welcome, apps, home, challenge, interval, difficulty, dark] = list;
+  return { list, welcome, apps, home, challenge, interval, difficulty, dark };
+}

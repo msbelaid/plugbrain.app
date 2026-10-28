@@ -1,10 +1,13 @@
 ---
 import '@fontsource-variable/lexend';
+// Arabic glyphs. Its @font-face rules only match Arabic characters, so other pages never download it.
+import '@fontsource-variable/readex-pro/wght.css';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { getStrings, dirFor } from '../i18n';
+import { getStrings, dirFor, homeFor, languages, defaultLocale } from '../i18n';
 import lexendLatin from '@fontsource-variable/lexend/files/lexend-latin-wght-normal.woff2?url';
+import readexArabic from '@fontsource-variable/readex-pro/files/readex-pro-arabic-wght-normal.woff2?url';
 
 interface Props {
   title?: string;
@@ -13,14 +16,16 @@ interface Props {
   noindex?: boolean;
   /** Page-specific schema.org nodes, added to the site-wide graph. */
   schema?: Record<string, unknown>[];
+  /** The page exists in every language (the home page), so link the translations for search engines. */
+  translated?: boolean;
 }
 const locale = Astro.currentLocale ?? 'en';
 const t = getStrings(locale);
-const { title = t.meta.title, description = t.meta.description, noindex = false, schema = [] } = Astro.props;
+const { title = t.meta.title, description = t.meta.description, noindex = false, schema = [], translated = false } = Astro.props;
 const site = Astro.site!;
 const canonical = new URL(Astro.url.pathname, site);
 const ogImage = new URL('/og.png', site);
-const ogLocale = ({ en: 'en_US' } as Record<string, string>)[locale] ?? locale;
+const ogLocale = ({ en: 'en_US', fr: 'fr_FR', ar: 'ar_AR' } as Record<string, string>)[locale] ?? locale;
 
 // Site-wide structured data. Pages add their own nodes (the app, the FAQ) via `schema`.
 const jsonLd = {
@@ -54,7 +59,10 @@ const jsonLd = {
     <meta name="description" content={description} />
     {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
     <link rel="sitemap" href="/sitemap.xml" />
+    {translated && Object.keys(languages).map((l) => <link rel="alternate" hreflang={l} href={new URL(homeFor(l), site)} />)}
+    {translated && <link rel="alternate" hreflang="x-default" href={new URL(homeFor(defaultLocale), site)} />}
     <link rel="preload" href={lexendLatin} as="font" type="font/woff2" crossorigin />
+    {locale === 'ar' && <link rel="preload" href={readexArabic} as="font" type="font/woff2" crossorigin />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#001824" />
@@ -68,12 +76,12 @@ const jsonLd = {
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1024" />
     <meta property="og:image:height" content="500" />
-    <meta property="og:image:alt" content="PlugBrain: Solve a little math. Scroll a lot less." />
+    <meta property="og:image:alt" content={t.meta.imageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:image:alt" content="PlugBrain: Solve a little math. Scroll a lot less." />
+    <meta name="twitter:image:alt" content={t.meta.imageAlt} />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
