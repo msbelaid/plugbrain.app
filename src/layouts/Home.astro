@@ -1,0 +1,70 @@
+---
+// The home page, rendered once per language by src/pages/index.astro and src/pages/<locale>/index.astro.
+import Base from './Base.astro';
+import Hero from '../components/Hero.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import Difficulty from '../components/Difficulty.astro';
+import Contrast from '../components/Contrast.astro';
+import Privacy from '../components/Privacy.astro';
+import Screens from '../components/Screens.astro';
+import Quotes from '../components/Quotes.astro';
+import Faq from '../components/Faq.astro';
+import Contribute from '../components/Contribute.astro';
+import { getImage } from 'astro:assets';
+import { getStrings, homeFor } from '../i18n';
+import { links } from '../data/links';
+import { screensFor } from '../data/screens';
+import { repoInfo } from '../data/github';
+
+const t = getStrings(Astro.currentLocale);
+const site = Astro.site!;
+const { version } = await repoInfo();
+const shots = await Promise.all(screensFor(Astro.currentLocale).list.map((src) => getImage({ src, width: 540, format: 'webp' })));
+
+// The app and the FAQ as schema.org data, so search engines can show them as rich results.
+const schema = [
+  {
+    '@type': 'MobileApplication',
+    '@id': new URL('/#app', site).href,
+    name: 'PlugBrain',
+    alternateName: 'PlugBrain: stop distractions',
+    description: t.meta.description,
+    url: site.href,
+    image: new URL('/apple-touch-icon.png', site).href,
+    screenshot: shots.map((s) => new URL(s.src, site).href),
+    operatingSystem: 'Android 9+',
+    applicationCategory: 'LifestyleApplication',
+    applicationSubCategory: 'Digital wellbeing',
+    ...(version && { softwareVersion: version }),
+    installUrl: links.play,
+    downloadUrl: links.apk,
+    sameAs: [links.play, links.fdroid, links.izzy, links.github],
+    license: 'https://www.gnu.org/licenses/gpl-3.0.html',
+    isAccessibleForFree: true,
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    featureList: t.meta.features,
+    inLanguage: ['en', 'ar', 'de', 'fa', 'fr', 'hi', 'ja', 'nl', 'ru', 'zh-CN'],
+    author: { '@id': new URL('/#author', site).href },
+  },
+  {
+    '@type': 'FAQPage',
+    '@id': new URL(`${homeFor(Astro.currentLocale)}#faq`, site).href,
+    mainEntity: t.faq.items.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  },
+];
+---
+<Base schema={schema} translated>
+  <Hero />
+  <HowItWorks />
+  <Difficulty />
+  <Contrast />
+  <Privacy />
+  <Screens />
+  <Quotes />
+  <Faq />
+  <Contribute />
+</Base>

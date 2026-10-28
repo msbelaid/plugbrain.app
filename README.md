@@ -18,10 +18,11 @@ npm run build    # static site in dist/
 
 | Path | What |
 | --- | --- |
-| `src/i18n/en.ts` | All page copy. A translation is a copy of this file plus a line in `src/i18n/index.ts` and `astro.config.mjs`. |
+| `src/i18n/` | All page copy: `en.ts`, `fr.ts` and `ar.ts`. A translation is a copy of `en.ts`, a line in `src/i18n/index.ts` and `astro.config.mjs`, and a `src/pages/<locale>/index.astro` page. |
+| `src/layouts/Home.astro` | The home page, rendered at `/`, `/fr/` and `/ar/`. Arabic is right to left: use logical CSS (`margin-inline-start`, `text-align: start`) rather than left/right. |
 | `src/components/` | One component per section. `ChallengeDemo.astro` is the playable challenge in the hero. |
 | `src/pages/privacy.astro` | Privacy policy, mirrored from `PRIVACY_POLICY.md` in the app repo. Keep them in sync. |
-| `src/assets/screens/` | Phone screenshots from the app repo's `fastlane/metadata/android/en-US/images/phoneScreenshots/`. |
+| `src/assets/screens/` | Phone screenshots per language, from the app repo's `fastlane/metadata/android/<locale>/images/phoneScreenshots/`. |
 | `src/data/links.ts` | Store links and the contributor list. Avatars live in `public/contributors/`. |
 | `public/` | Logo, favicon, social preview image (`og.png`) and `CNAME`. |
 

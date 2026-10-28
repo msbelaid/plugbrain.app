@@ -2,9 +2,10 @@
 import Phone from './Phone.astro';
 import Icon from './Icon.astro';
 import { getStrings } from '../i18n';
-import { home } from '../data/screens';
+import { screensFor } from '../data/screens';
 const t = getStrings(Astro.currentLocale);
 const d = t.difficulty;
+const { home } = screensFor(Astro.currentLocale);
 ---
 <section class="section teal" id="difficulty">
   <div class="wrap grid">

@@ -13,7 +13,7 @@ const t = getStrings(Astro.currentLocale);
         <img class="mark" src="/logo-light.svg" width="64" height="64" alt="" />
         <p class="title">{t.demo.title}</p>
         <form class="card" data-form novalidate>
-          <p class="q" data-q aria-live="polite">7 × 8</p>
+          <p class="q" data-q aria-live="polite" dir="ltr">7 × 8</p>
           <label class="sr" for="demo-answer">{t.demo.inputLabel}</label>
           <input id="demo-answer" class="answer" data-input inputmode="numeric" autocomplete="off" enterkeyhint="done" placeholder={t.demo.placeholder} maxlength="10" />
           <button class="check" type="submit" data-check><Icon name="check" size={18} /> {t.demo.check}</button>
@@ -131,7 +131,11 @@ const t = getStrings(Astro.currentLocale);
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       if (!more.hidden) return;
-      const raw = input.value.trim().replace(/[^\d-]/g, '');
+      // Accept Arabic-Indic (٤٢) and Persian (۴۲) digits as well as 0-9.
+      const raw = input.value
+        .trim()
+        .replace(/[\u0660-\u0669\u06f0-\u06f9]/g, (d) => String(d.charCodeAt(0) & 0xf))
+        .replace(/[^\d-]/g, '');
       if (!raw) { say(s.empty, 'warn'); input.focus(); return; }
       if (Number(raw) === answer) {
         level = Math.min(MAX, level + 2);
