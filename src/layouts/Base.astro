@@ -84,6 +84,8 @@ const jsonLd = {
     <meta name="twitter:image:alt" content={t.meta.imageAlt} />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script is:inline>document.documentElement.classList.add('js');</script>
+    {/* Cookie-free, open-source visit counter (GoatCounter). No personal data; see /privacy/. */}
+    <script is:inline data-goatcounter="https://plugbrain.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
   </head>
   <body>
     <a class="skip" href="#main">{t.nav.skip}</a>
