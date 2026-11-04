@@ -127,7 +127,7 @@ export default {
       { icon: 'code', title: 'Libre et open source', text: 'Sous licence GPL-3.0. Lis le code, compile-le toi-même, améliore-le.' },
       { icon: 'shield', title: 'Sur F-Droid', text: 'Compilée depuis les sources par F-Droid, sans aucune anti-fonctionnalité signalée.' },
     ],
-    site: 'Ce site suit les mêmes règles\u00a0: pas de cookies, pas de statistiques, et des polices servies d’ici, pas par Google.',
+    site: 'Ce site suit les mêmes règles\u00a0: pas de cookies, pas de pisteurs, juste un compteur de visites anonyme, et des polices servies d’ici, pas par Google.',
     policy: 'Lire la politique de confidentialité (en anglais)',
   },
   screens: {
@@ -247,7 +247,7 @@ export default {
   privacyPage: {
     title: 'Politique de confidentialité',
     metaDescription: 'Politique de confidentialité de PlugBrain\u00a0: l’appli ne collecte aucune donnée personnelle, ne demande aucun compte, n’affiche aucune pub et n’a pas de permission Internet.',
-    updated: 'Dernière mise à jour\u00a0: 2\u00a0octobre 2025',
+    updated: 'Dernière mise à jour\u00a0: 4\u00a0novembre 2026',
     back: 'Retour à l’accueil',
   },
   notFound: {

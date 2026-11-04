@@ -120,7 +120,7 @@ export default {
       { icon: 'code', title: 'Free and open source', text: 'GPL-3.0 licensed. Read the code, build it yourself, improve it.' },
       { icon: 'shield', title: 'On F-Droid', text: 'Built from source by F-Droid, with no anti-features listed.' },
     ],
-    site: 'This website follows the same rules: no cookies, no analytics, and fonts served from here, not from Google.',
+    site: 'This website follows the same rules: no cookies, no trackers, only an anonymous visit counter, and fonts served from here, not from Google.',
     policy: 'Read the privacy policy',
   },
   screens: {
@@ -244,7 +244,7 @@ export default {
   privacyPage: {
     title: 'Privacy policy',
     metaDescription: 'PlugBrain privacy policy: the app collects no personal data, needs no account, shows no ads and has no internet permission.',
-    updated: 'Last updated: October 2, 2025',
+    updated: 'Last updated: November 4, 2026',
     back: 'Back to home',
   },
   notFound: {
