@@ -43,9 +43,9 @@ const schema = [{
   isPartOf: { '@id': new URL(`${gardenHome(locale)}#blog`, Astro.site).href },
 }];
 ---
-<Base title={`${title} · PlugBrain`} description={description} schema={schema} ogType="article" alternates={alternates} image={share}>
+<Base title={`${title} · ${g.title}`} description={description} schema={schema} ogType="article" alternates={alternates} image={share}>
   <article class="story wrap">
-    <a class="back" href={gardenHome(locale)}>← {g.back}</a>
+    <a class="garden-mark" href={gardenHome(locale)}><StageIcon stage="seedling" size={40} /><span>{g.title}</span></a>
     <div class="meta"><StageIcon stage={stage} size={36} /><span>{g.stages[stage]}</span> · <time datetime={iso}>{formatDate(date, locale)}</time></div>
     <h1>{title}</h1>
     {img && <Image class="hero" src={img} alt={imgAlt} widths={[680, 1200]} sizes="(max-width: 720px) 100vw, 680px" loading="eager" />}
@@ -59,7 +59,8 @@ const schema = [{
 </Base>
 <style>
   .story { max-width: 680px; padding-top: 48px; padding-bottom: 96px; --g-muted: #5e9e9c; }
-  .back { display: inline-block; margin-bottom: 32px; text-decoration: none; font-size: 15px; }
+  .garden-mark { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 36px; padding: 6px 16px 6px 8px; border: 1px solid var(--line); border-radius: 999px; text-decoration: none; color: var(--text); font-weight: 500; font-size: 15px; }
+  .garden-mark:hover { border-color: var(--g-muted); color: var(--accent); }
   .meta { display: flex; align-items: center; gap: 8px; color: var(--g-muted); font-size: 14px; font-weight: 300; }
   .meta span { letter-spacing: 1.5px; text-transform: uppercase; font-size: 12px; font-weight: 500; }
   h1 { font-size: clamp(30px, 5vw, 42px); font-weight: 500; letter-spacing: -0.5px; line-height: 1.2; margin: 12px 0 32px; }
