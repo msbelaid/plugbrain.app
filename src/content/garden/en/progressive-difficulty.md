@@ -4,6 +4,7 @@ description: Every challenge you solve makes the next one a little harder. Stay 
 date: 2026-11-23
 imageAlt: "Stairs over a row of time intervals: each interval with the phone on goes a step up, from 4 + 3 to 7 × 8; every two intervals with the phone off go a step down, back to 5 + 4."
 stage: seed
+draft: true
 ---
 
 PlugBrain has dozens of math challenges, sorted from easy to hard.
