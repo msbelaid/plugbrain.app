@@ -2,6 +2,7 @@
 title: Easy challenges!
 description: My son got fast at the sums, so I stopped choosing the difficulty and let his time on the tablet choose it.
 date: 2026-11-16
+imageAlt: "Three math cards on rising steps: 4 + 3, 38 + 25, then 7 × 8."
 stage: seed
 ---
 

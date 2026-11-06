@@ -22,13 +22,17 @@ interface Props {
   alternates?: Record<string, string>;
   /** og:type, "website" by default; garden stories are articles. */
   ogType?: string;
+  /** Share image (1200×630) in place of the site-wide og.png. */
+  image?: { src: string; alt: string };
 }
 const locale = Astro.currentLocale ?? 'en';
 const t = getStrings(locale);
-const { title = t.meta.title, description = t.meta.description, noindex = false, schema = [], translated = false, alternates = {}, ogType = 'website' } = Astro.props;
+const { title = t.meta.title, description = t.meta.description, noindex = false, schema = [], translated = false, alternates = {}, ogType = 'website', image } = Astro.props;
 const site = Astro.site!;
 const canonical = new URL(Astro.url.pathname, site);
-const ogImage = new URL('/og.png', site);
+const ogImage = new URL(image?.src ?? '/og.png', site);
+const ogAlt = image?.alt ?? t.meta.imageAlt;
+const ogSize = image ? [1200, 630] : [1024, 500];
 const ogLocale = ({ en: 'en_US', fr: 'fr_FR', ar: 'ar_AR' } as Record<string, string>)[locale] ?? locale;
 
 // Site-wide structured data. Pages add their own nodes (the app, the FAQ) via `schema`.
@@ -81,14 +85,14 @@ const jsonLd = {
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1024" />
-    <meta property="og:image:height" content="500" />
-    <meta property="og:image:alt" content={t.meta.imageAlt} />
+    <meta property="og:image:width" content={ogSize[0]} />
+    <meta property="og:image:height" content={ogSize[1]} />
+    <meta property="og:image:alt" content={ogAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:image:alt" content={t.meta.imageAlt} />
+    <meta name="twitter:image:alt" content={ogAlt} />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script is:inline>document.documentElement.classList.add('js');</script>
     {/* Cookie-free, open-source visit counter (GoatCounter). No personal data; see /privacy/. */}

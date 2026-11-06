@@ -1,8 +1,9 @@
 ---
 import Base from '../../layouts/Base.astro';
 import StageIcon from './StageIcon.astro';
+import { Image } from 'astro:assets';
 import { getStrings, languages, dirFor } from '../../i18n';
-import { stories, stageOrder, formatDate, gardenHome } from '../../data/garden';
+import { stories, stageOrder, formatDate, gardenHome, imageFor } from '../../data/garden';
 
 const locale = Astro.currentLocale ?? 'en';
 const t = getStrings(locale);
@@ -47,16 +48,21 @@ const schema = [{
           <ol>
             {items.map((s) => (
               <li class:list={['story', { soon: !s.published }]}>
-                {s.published ? (
-                  <>
-                    <time datetime={s.entry.data.date.toISOString().slice(0, 10)}>{formatDate(s.entry.data.date, locale)}</time>
-                    <a href={s.url} {...foreign(s.lang)}>{s.entry.data.title}</a>
-                  </>
-                ) : (
-                  <>
-                    <span class="date">{g.coming.replace('{date}', formatDate(s.entry.data.date, locale, false))}</span>
-                    <span class="title" {...foreign(s.lang)}>{s.entry.data.title}</span>
-                  </>
+                <div class="text">
+                  {s.published ? (
+                    <>
+                      <time datetime={s.entry.data.date.toISOString().slice(0, 10)}>{formatDate(s.entry.data.date, locale)}</time>
+                      <a href={s.url} {...foreign(s.lang)}>{s.entry.data.title}</a>
+                    </>
+                  ) : (
+                    <>
+                      <span class="date">{g.coming.replace('{date}', formatDate(s.entry.data.date, locale, false))}</span>
+                      <span class="title" {...foreign(s.lang)}>{s.entry.data.title}</span>
+                    </>
+                  )}
+                </div>
+                {imageFor(s.slug) && (
+                  <Image class="thumb" src={imageFor(s.slug)!} alt="" widths={[200, 400]} sizes="(max-width: 600px) 96px, 200px" loading="lazy" />
                 )}
               </li>
             ))}
@@ -68,7 +74,7 @@ const schema = [{
   </div>
 </Base>
 <style>
-  .garden { max-width: 760px; padding-top: 64px; padding-bottom: 96px; --g-muted: #5e9e9c; --stem: #8fc9c7; }
+  .garden { max-width: 820px; padding-top: 64px; padding-bottom: 96px; --g-muted: #5e9e9c; --stem: #8fc9c7; }
   h1 { font-size: clamp(32px, 5vw, 44px); font-weight: 500; letter-spacing: -0.5px; line-height: 1.15; margin: 0; }
   .sub { color: var(--g-muted); font-weight: 300; font-size: 18px; margin: 10px 0 48px; }
   ol { list-style: none; margin: 0; padding: 0; }
@@ -79,8 +85,11 @@ const schema = [{
   .stage > ol { position: relative; padding-inline-start: 64px; padding-bottom: 18px; }
   /* The stem: one line through every stage. */
   .stage > ol::before { content: ''; position: absolute; inset-inline-start: 23px; top: -8px; bottom: 0; width: 2px; background: linear-gradient(var(--stem), var(--g-muted)); }
-  .story { position: relative; margin: 0 0 22px; }
-  .story::before { content: ''; position: absolute; inset-inline-start: -46px; top: 7px; width: 10px; height: 10px; border-radius: 50%; background: var(--bg); border: 2px solid var(--text); }
+  .story { position: relative; margin: 0 0 26px; display: flex; align-items: center; gap: 20px; }
+  .text { flex: 1; min-width: 0; }
+  .thumb { flex: none; width: 200px; height: auto; aspect-ratio: 1200 / 630; border-radius: 12px; border: 1px solid var(--line); }
+  .story:has(a:hover) .thumb { border-color: var(--g-muted); }
+  .story::before { content: ''; position: absolute; inset-inline-start: -46px; top: calc(50% - 7px); width: 10px; height: 10px; border-radius: 50%; background: var(--bg); border: 2px solid var(--text); }
   time, .date { display: block; font-size: 13px; color: var(--g-muted); font-weight: 300; }
   .story a, .story .title { display: block; font-size: 19px; font-weight: 500; color: var(--text); text-decoration: none; line-height: 1.35; margin-top: 2px; }
   .story a:hover { color: var(--accent); text-decoration: underline; }
@@ -91,5 +100,5 @@ const schema = [{
   .soon::before { border-style: dashed; }
   .foot { margin-top: 32px; font-size: 14px; color: var(--g-muted); font-weight: 300; }
   @media (prefers-color-scheme: dark) { .garden { --g-muted: #8fc9c7; --stem: #5e9e9c; } }
-  @media (max-width: 600px) { .garden { padding-top: 40px; } .story a, .story .title { font-size: 17px; } }
+  @media (max-width: 600px) { .garden { padding-top: 40px; } .story { gap: 14px; } .story a, .story .title { font-size: 17px; } .thumb { width: 96px; border-radius: 8px; } }
 </style>

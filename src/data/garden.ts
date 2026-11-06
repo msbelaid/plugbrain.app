@@ -1,5 +1,12 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
+import type { ImageMetadata } from 'astro';
 import { defaultLocale, homeFor } from '../i18n';
+
+// Featured images: src/assets/garden/<slug>.png (1200×630), shared by every language.
+const images = import.meta.glob<{ default: ImageMetadata }>('../assets/garden/*.png', { eager: true });
+export function imageFor(slug: string): ImageMetadata | undefined {
+  return images[`../assets/garden/${slug}.png`]?.default;
+}
 
 export type Stage = CollectionEntry<'garden'>['data']['stage'];
 export const stageOrder: Stage[] = ['seed', 'sprout', 'seedling', 'sapling', 'youngTree', 'blossom', 'fruit'];

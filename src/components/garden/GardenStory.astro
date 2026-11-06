@@ -2,8 +2,9 @@
 import Base from '../../layouts/Base.astro';
 import StageIcon from './StageIcon.astro';
 import { render } from 'astro:content';
+import { Image, getImage } from 'astro:assets';
 import { getStrings, homeFor, languages } from '../../i18n';
-import { stories, pagesFor, formatDate, gardenHome, type Story } from '../../data/garden';
+import { stories, pagesFor, formatDate, gardenHome, imageFor, type Story } from '../../data/garden';
 
 interface Props { story: Story }
 const { story } = Astro.props;
@@ -13,6 +14,10 @@ const g = t.garden;
 const { Content } = await render(story.entry);
 const { title, description, date, stage } = story.entry.data;
 const iso = date.toISOString().slice(0, 10);
+const img = imageFor(story.slug);
+const imgAlt = story.entry.data.imageAlt ?? '';
+// Share image for link previews: the featured image as a 1200×630 PNG.
+const share = img ? { src: (await getImage({ src: img, width: 1200, format: 'png' })).src, alt: imgAlt || title } : undefined;
 
 // Neighbours in the timeline, published ones only.
 const all = (await stories(locale)).filter((s) => s.published);
@@ -33,15 +38,17 @@ const schema = [{
   datePublished: iso,
   inLanguage: locale,
   url: new URL(story.url, Astro.site).href,
+  ...(share ? { image: new URL(share.src, Astro.site).href } : {}),
   author: { '@id': new URL('/#author', Astro.site).href },
   isPartOf: { '@id': new URL(`${gardenHome(locale)}#blog`, Astro.site).href },
 }];
 ---
-<Base title={`${title} · PlugBrain`} description={description} schema={schema} ogType="article" alternates={alternates}>
+<Base title={`${title} · PlugBrain`} description={description} schema={schema} ogType="article" alternates={alternates} image={share}>
   <article class="story wrap">
     <a class="back" href={gardenHome(locale)}>← {g.back}</a>
     <div class="meta"><StageIcon stage={stage} size={36} /><span>{g.stages[stage]}</span> · <time datetime={iso}>{formatDate(date, locale)}</time></div>
     <h1>{title}</h1>
+    {img && <Image class="hero" src={img} alt={imgAlt} widths={[680, 1200]} sizes="(max-width: 720px) 100vw, 680px" loading="eager" />}
     <div class="body"><Content /></div>
     <nav class="pager" aria-label={g.back}>
       {prev ? <a class="prev" href={prev.url}><small>{g.previous}</small>{prev.entry.data.title}</a> : <span />}
@@ -56,6 +63,7 @@ const schema = [{
   .meta { display: flex; align-items: center; gap: 8px; color: var(--g-muted); font-size: 14px; font-weight: 300; }
   .meta span { letter-spacing: 1.5px; text-transform: uppercase; font-size: 12px; font-weight: 500; }
   h1 { font-size: clamp(30px, 5vw, 42px); font-weight: 500; letter-spacing: -0.5px; line-height: 1.2; margin: 12px 0 32px; }
+  .hero { width: 100%; height: auto; border-radius: 16px; border: 1px solid var(--line); margin: 0 0 36px; }
   .body { font-size: 19px; line-height: 1.7; font-weight: 300; }
   .body :global(p) { margin: 0 0 1.1em; }
   .body :global(strong) { font-weight: 500; }

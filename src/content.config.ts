@@ -12,6 +12,8 @@ const garden = defineCollection({
     description: z.string(),
     /** Publication date. A future date keeps the story hidden until that day (the site rebuilds daily). */
     date: z.coerce.date(),
+    /** Describes the featured image src/assets/garden/<slug>.png, for screen readers and link previews. */
+    imageAlt: z.string().optional(),
     stage: z.enum(['seed', 'sprout', 'seedling', 'sapling', 'youngTree', 'blossom', 'fruit']),
     /** Keep a story out of the site entirely while it is being written. */
     draft: z.boolean().default(false),

@@ -2,6 +2,7 @@
 title: How progressive difficulty works
 description: Every challenge you solve makes the next one a little harder. Stay away and it eases off, but never below the level you chose.
 date: 2026-11-23
+imageAlt: "A phone, then challenge cards climbing like stairs, and a cup of coffee for a break."
 stage: seed
 ---
 
