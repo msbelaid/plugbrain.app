@@ -1,0 +1,9 @@
+---
+import GardenStory from '../../../components/garden/GardenStory.astro';
+import { pagesFor } from '../../../data/garden';
+
+export async function getStaticPaths() {
+  return (await pagesFor('fr')).map((story) => ({ params: { slug: story.slug }, props: { story } }));
+}
+---
+<GardenStory story={Astro.props.story} />

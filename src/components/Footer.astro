@@ -3,11 +3,14 @@ import Logo from './Logo.astro';
 import { getStrings, homeFor, languages } from '../i18n';
 import { links } from '../data/links';
 import { repoInfo } from '../data/github';
+import { gardenHome } from '../data/garden';
 
 const locale = Astro.currentLocale ?? 'en';
 const t = getStrings(locale);
 const { version } = await repoInfo();
 const year = new Date().getFullYear();
+// From a garden page, switch to the garden in the other language rather than its home page.
+const inGarden = Astro.url.pathname.includes('/garden/');
 ---
 <footer class="site-footer">
   <div class="wrap grid">
@@ -33,6 +36,7 @@ const year = new Date().getFullYear();
     <div>
       <h2>{t.footer.project}</h2>
       <ul>
+        <li><a href={gardenHome(locale)}>{t.nav.garden}</a></li>
         <li><a href={links.github}>{t.footer.source}</a></li>
         <li><a href={links.issues}>{t.footer.issues}</a></li>
         <li><a href={links.reddit}>{t.footer.reddit}</a></li>
@@ -45,7 +49,7 @@ const year = new Date().getFullYear();
     <nav aria-label={t.footer.language}>
       <ul class="langs">
         {Object.entries(languages).map(([l, name]) => (
-          <li><a href={homeFor(l)} lang={l} hreflang={l} aria-current={l === locale ? 'page' : undefined}>{name}</a></li>
+          <li><a href={inGarden ? gardenHome(l) : homeFor(l)} lang={l} hreflang={l} aria-current={l === locale ? 'page' : undefined}>{name}</a></li>
         ))}
       </ul>
     </nav>

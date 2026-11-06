@@ -1,0 +1,44 @@
+---
+// One plant growing through the garden's stages: ink outlines with teal-filled leaves.
+// Drawn for PlugBrain (no icon library). Ground line in the muted teal.
+import type { Stage } from '../../data/garden';
+interface Props { stage: Stage; size?: number }
+const { stage, size = 48 } = Astro.props;
+const crown = 'M24 27c-9 0-14-4-14-10 0-7 6-12 14-12s14 5 14 12c0 6-5 10-14 10z';
+const leaves: Record<Stage, string[]> = {
+  seed: ['M24 26c5 0 8 4 8 8s-3 5-8 5-8-1-8-5 3-8 8-8z'],
+  sprout: ['M24 30c-7 0-10-5-10-9 6 0 10 3 10 9z', 'M24 28c6 0 9-5 9-8-5 0-9 3-9 8z'],
+  seedling: ['M24 34c-7 0-10-4-10-8 6 0 10 3 10 8z', 'M24 26c7 0 10-4 10-8-6 0-10 3-10 8z', 'M24 18c-5 0-7-4-7-6 4 0 7 2 7 6z'],
+  sapling: ['M17 25c-5 1-9-2-9-5 4-1 8 1 9 5z', 'M31 17c5 1 9-2 9-5-4-1-8 1-9 5z', 'M24 30c5 2 9 0 10-3-4-2-8-1-10 3z', 'M24 11c-3-3-3-6 0-8 3 2 3 5 0 8z'],
+  youngTree: [crown],
+  blossom: [crown],
+  fruit: [crown],
+};
+const stems: Record<Stage, string> = {
+  seed: 'M22 30c1 2 1 4 0 6',
+  sprout: 'M24 40V28',
+  seedling: 'M24 40V14',
+  sapling: 'M24 40V10M24 30l-7-5M24 22l7-5',
+  youngTree: 'M24 40V26M24 32l-5-4M24 30l5-4',
+  blossom: 'M24 40V26',
+  fruit: 'M24 40V26',
+};
+const flowers = [[17, 14], [28, 11], [31, 20], [21, 21]];
+const fruits = [[17, 15], [29, 12], [27, 21]];
+---
+<svg class="stage-icon" width={size} height={size} viewBox="0 0 48 48" aria-hidden="true">
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d={stems[stage]} />
+    {leaves[stage].map((d) => <path d={d} class="leaf" />)}
+    {stage === 'blossom' && flowers.map(([x, y]) => <><circle cx={x} cy={y} r="2.6" class="petal" stroke-width="1.6" /><circle cx={x} cy={y} r="0.9" fill="currentColor" stroke="none" /></>)}
+    {stage === 'fruit' && fruits.map(([x, y]) => <circle cx={x} cy={y} r="3.2" class="fruit" stroke-width="1.8" />)}
+  </g>
+  <path d="M10 40h28" class="ground" fill="none" stroke-width="2" stroke-linecap="round" />
+</svg>
+<style>
+  .stage-icon { color: var(--text); flex: none; }
+  .leaf { fill: rgba(32, 223, 217, 0.35); }
+  .petal { fill: var(--bg); }
+  .fruit { fill: #20dfd9; }
+  .ground { stroke: var(--g-muted, #5e9e9c); }
+</style>
