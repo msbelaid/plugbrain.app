@@ -2,7 +2,7 @@
 title: How progressive difficulty works
 description: Every challenge you solve makes the next one a little harder. Stay away and it eases off, but never below the level you chose.
 date: 2026-11-23
-imageAlt: "A phone, then challenge cards climbing like stairs, and a cup of coffee for a break."
+imageAlt: "Stairs over a row of time intervals: each interval on the phone adds a step up, from 4 + 3 to 7 × 8; every two intervals with a coffee break take a step down, back to 5 + 4."
 stage: seed
 ---
 
