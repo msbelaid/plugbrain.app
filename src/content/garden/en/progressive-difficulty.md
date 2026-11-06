@@ -5,9 +5,9 @@ date: 2026-11-23
 stage: seed
 ---
 
-PlugBrain has about 40 kinds of math challenges, sorted from easy to hard.
+PlugBrain has dozens of math challenges, sorted from easy to hard.
 
-At the bottom: adding numbers under five. At the top: multiplying two four-digit numbers.
+They start with adding numbers under five and go all the way to multiplying big numbers.
 
 You choose two things when you set it up. How often your apps get locked, and the easiest level you want to see.
 
@@ -17,7 +17,7 @@ Each time you solve a challenge, the next one moves up a level. Open your apps a
 
 Stay away, and it goes the other way. For every two lock periods without a challenge, the difficulty drops one level.
 
-It never drops below the level you chose. And it never goes past the hardest challenge.
+It never drops below the level you chose.
 
 So a quick check stays quick. A long scroll gets slower and slower to get back to.
 
