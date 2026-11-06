@@ -1,8 +1,8 @@
 ---
 title: PlugBrain started as a solution for my son
 description: My son loved his tablet and struggled with math at school. So I made the way back to his tablet go through a few simple sums.
-date: 2026-11-09
-imageAlt: "A tablet with a padlock on its screen; the keyhole is a plus sign."
+date: 2024-01-15
+imageAlt: "A tablet chained to a padlock whose screen shows 4 + 3."
 stage: seed
 ---
 
