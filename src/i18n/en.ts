@@ -256,7 +256,7 @@ export default {
     stages: { seed: 'Seed', sprout: 'Sprout', seedling: 'Seedling', sapling: 'Sapling', youngTree: 'Young tree', blossom: 'Blossom', fruit: 'Fruit' },
     // {date} is replaced with the publication date.
     coming: 'Coming {date}',
-    stillGrowing: 'Still growing: a new story every week.',
+    stillGrowing: 'Still growing.',
     rss: 'Follow with RSS',
     back: 'All stories',
     next: 'Next',

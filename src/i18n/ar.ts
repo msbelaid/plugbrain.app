@@ -250,7 +250,7 @@ export default {
     metaDescription: 'قصص قصيرة عن نمو PlugBrain، من قفل حسابي صُنع لطفل واحد إلى تطبيق مجاني ومفتوح المصدر لحجب التطبيقات يُستخدم حول العالم.',
     stages: { seed: 'بذرة', sprout: 'برعم', seedling: 'شتلة', sapling: 'نبتة', youngTree: 'شجرة فتية', blossom: 'إزهار', fruit: 'ثمار' },
     coming: 'قريبًا في {date}',
-    stillGrowing: 'الحديقة ما زالت تنمو: قصة جديدة كل أسبوع.',
+    stillGrowing: 'الحديقة ما زالت تنمو.',
     rss: 'تابع عبر RSS',
     back: 'كل القصص',
     next: 'التالية',

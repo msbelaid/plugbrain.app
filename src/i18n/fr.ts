@@ -258,7 +258,7 @@ export default {
     metaDescription: 'De courtes histoires sur la croissance de PlugBrain, d’un verrou à calcul conçu pour un enfant à un bloqueur d’apps libre et gratuit utilisé partout dans le monde.',
     stages: { seed: 'Graine', sprout: 'Pousse', seedling: 'Plantule', sapling: 'Jeune plant', youngTree: 'Jeune arbre', blossom: 'Floraison', fruit: 'Fruit' },
     coming: 'À venir le {date}',
-    stillGrowing: 'Le jardin pousse encore : une nouvelle histoire chaque semaine.',
+    stillGrowing: 'Le jardin pousse encore.',
     rss: 'Suivre par RSS',
     back: 'Toutes les histoires',
     next: 'Suivante',
