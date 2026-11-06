@@ -20,6 +20,7 @@ export default {
     difficulty: 'Difficulty',
     privacy: 'Privacy',
     faq: 'FAQ',
+    garden: 'Garden',
     getApp: 'Get the app',
     skip: 'Skip to content',
     main: 'Main',
@@ -246,6 +247,23 @@ export default {
     metaDescription: 'PlugBrain privacy policy: the app collects no personal data, needs no account, shows no ads and has no internet permission.',
     updated: 'Last updated: November 4, 2026',
     back: 'Back to home',
+  },
+  garden: {
+    title: 'The PlugBrain garden',
+    metaTitle: 'The PlugBrain garden: how a small app grew',
+    intro: 'How a small app grew, one story at a time.',
+    metaDescription: 'Short stories about how PlugBrain grew, from a math lock built for one child to a free, open-source app blocker used around the world.',
+    stages: { seed: 'Seed', sprout: 'Sprout', seedling: 'Seedling', sapling: 'Sapling', youngTree: 'Young tree', blossom: 'Blossom', fruit: 'Fruit' },
+    // {date} is replaced with the publication date.
+    coming: 'Coming {date}',
+    stillGrowing: 'Still growing: a new story every week.',
+    rss: 'Follow with RSS',
+    back: 'All stories',
+    next: 'Next',
+    previous: 'Previous',
+    // Shown on a story that isn't translated yet.
+    englishOnly: 'This story is only in English for now.',
+    getApp: 'Try PlugBrain',
   },
   notFound: {
     title: 'This page took a break.',

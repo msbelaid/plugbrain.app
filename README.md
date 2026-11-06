@@ -24,7 +24,28 @@ npm run build    # static site in dist/
 | `src/pages/privacy.astro` | Privacy policy, mirrored from `PRIVACY_POLICY.md` in the app repo. Keep them in sync. |
 | `src/assets/screens/` | Phone screenshots per language, from the app repo's `fastlane/metadata/android/<locale>/images/phoneScreenshots/`. |
 | `src/data/links.ts` | Store links and the contributor list. Avatars live in `public/contributors/`. |
+| `src/content/garden/` | Garden stories (see below). Index and story pages are in `src/components/garden/`. |
 | `public/` | Logo, favicon, social preview image (`og.png`) and `CNAME`. |
+
+## The garden
+
+`/garden/` is a timeline of short stories about how PlugBrain grew, from a seed to a young tree. Each story is a Markdown file in `src/content/garden/<locale>/<slug>.md`:
+
+```md
+---
+title: Easy challenges!
+description: One sentence for search results and link previews.
+date: 2026-11-16
+stage: seed   # seed, sprout, seedling, sapling, youngTree, blossom or fruit
+---
+
+Short paragraphs, one idea each.
+```
+
+- The same file name in `en/`, `fr/` and `ar/` is one story in three languages. A story that isn't translated yet shows in English on the French and Arabic timelines.
+- A story with a future `date` stays hidden, and the next one shows faded as "Coming". The site rebuilds every day, so it goes live on its date with no push needed. `draft: true` hides a story completely.
+- `GARDEN_PREVIEW=1 npm run dev` shows every story, future ones included, to review them early.
+- Each language has an RSS feed at `/garden/rss.xml`, `/fr/garden/rss.xml` and `/ar/garden/rss.xml`.
 
 ## Privacy
 

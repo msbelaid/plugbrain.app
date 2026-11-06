@@ -1,10 +1,11 @@
 import type { APIRoute } from 'astro';
 import { languages, defaultLocale, homeFor } from '../i18n';
+import { pagesFor } from '../data/garden';
 
 // Every .astro page except the 404, so new pages are listed without touching this file.
 const pages = Object.keys(import.meta.glob('./**/*.astro'))
   .map((file) => file.replace(/^\.\//, '/').replace(/(index)?\.astro$/, '').replace(/([^/])$/, '$1/'))
-  .filter((path) => path !== '/404/')
+  .filter((path) => path !== '/404/' && !path.includes('['))
   .sort();
 
 // The home page exists in every language: each copy lists all of them, so search engines show the right one.
@@ -14,8 +15,10 @@ const alternates: [string, string][] = [
   ['x-default', homeFor(defaultLocale)],
 ];
 
-export const GET: APIRoute = ({ site }) => {
-  const urls = pages
+export const GET: APIRoute = async ({ site }) => {
+  // Garden stories are built from Markdown, so list the published ones here.
+  const stories = (await Promise.all(Object.keys(languages).map(pagesFor))).flat().map((s) => s.url);
+  const urls = [...pages, ...stories]
     .map((path) => {
       const links = homes.includes(path)
         ? alternates.map(([l, p]) => `\n    <xhtml:link rel="alternate" hreflang="${l}" href="${new URL(p, site)}"/>`).join('') + '\n  '

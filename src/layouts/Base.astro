@@ -18,10 +18,14 @@ interface Props {
   schema?: Record<string, unknown>[];
   /** The page exists in every language (the home page), so link the translations for search engines. */
   translated?: boolean;
+  /** Translations of this page that aren't the home page: { locale: path }. */
+  alternates?: Record<string, string>;
+  /** og:type, "website" by default; garden stories are articles. */
+  ogType?: string;
 }
 const locale = Astro.currentLocale ?? 'en';
 const t = getStrings(locale);
-const { title = t.meta.title, description = t.meta.description, noindex = false, schema = [], translated = false } = Astro.props;
+const { title = t.meta.title, description = t.meta.description, noindex = false, schema = [], translated = false, alternates = {}, ogType = 'website' } = Astro.props;
 const site = Astro.site!;
 const canonical = new URL(Astro.url.pathname, site);
 const ogImage = new URL('/og.png', site);
@@ -61,12 +65,15 @@ const jsonLd = {
     <link rel="sitemap" href="/sitemap.xml" />
     {translated && Object.keys(languages).map((l) => <link rel="alternate" hreflang={l} href={new URL(homeFor(l), site)} />)}
     {translated && <link rel="alternate" hreflang="x-default" href={new URL(homeFor(defaultLocale), site)} />}
+    {Object.entries(alternates).map(([l, p]) => <link rel="alternate" hreflang={l} href={new URL(p, site)} />)}
+    {alternates[defaultLocale] && <link rel="alternate" hreflang="x-default" href={new URL(alternates[defaultLocale], site)} />}
+    <slot name="head" />
     <link rel="preload" href={lexendLatin} as="font" type="font/woff2" crossorigin />
     {locale === 'ar' && <link rel="preload" href={readexArabic} as="font" type="font/woff2" crossorigin />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#001824" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:locale" content={ogLocale} />
     <meta property="og:site_name" content="PlugBrain" />
     <meta property="og:title" content={title} />

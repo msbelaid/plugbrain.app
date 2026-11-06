@@ -1,0 +1,71 @@
+---
+import Base from '../../layouts/Base.astro';
+import StageIcon from './StageIcon.astro';
+import { render } from 'astro:content';
+import { getStrings, homeFor, languages } from '../../i18n';
+import { stories, pagesFor, formatDate, gardenHome, type Story } from '../../data/garden';
+
+interface Props { story: Story }
+const { story } = Astro.props;
+const locale = Astro.currentLocale ?? 'en';
+const t = getStrings(locale);
+const g = t.garden;
+const { Content } = await render(story.entry);
+const { title, description, date, stage } = story.entry.data;
+const iso = date.toISOString().slice(0, 10);
+
+// Neighbours in the timeline, published ones only.
+const all = (await stories(locale)).filter((s) => s.published);
+const i = all.findIndex((s) => s.slug === story.slug);
+const prev = all[i - 1];
+const next = all[i + 1];
+
+// Languages this story is published in, for search engines.
+const alternates: Record<string, string> = {};
+for (const l of Object.keys(languages)) {
+  const page = (await pagesFor(l)).find((s) => s.slug === story.slug);
+  if (page) alternates[l] = page.url;
+}
+const schema = [{
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  datePublished: iso,
+  inLanguage: locale,
+  url: new URL(story.url, Astro.site).href,
+  author: { '@id': new URL('/#author', Astro.site).href },
+  isPartOf: { '@id': new URL(`${gardenHome(locale)}#blog`, Astro.site).href },
+}];
+---
+<Base title={`${title} · PlugBrain`} description={description} schema={schema} ogType="article" alternates={alternates}>
+  <article class="story wrap">
+    <a class="back" href={gardenHome(locale)}>← {g.back}</a>
+    <div class="meta"><StageIcon stage={stage} size={36} /><span>{g.stages[stage]}</span> · <time datetime={iso}>{formatDate(date, locale)}</time></div>
+    <h1>{title}</h1>
+    <div class="body"><Content /></div>
+    <nav class="pager" aria-label={g.back}>
+      {prev ? <a class="prev" href={prev.url}><small>{g.previous}</small>{prev.entry.data.title}</a> : <span />}
+      {next && <a class="next" href={next.url}><small>{g.next}</small>{next.entry.data.title}</a>}
+    </nav>
+    <p class="cta"><a class="btn btn-primary" href={`${homeFor(locale)}#download`}>{g.getApp}</a></p>
+  </article>
+</Base>
+<style>
+  .story { max-width: 680px; padding-top: 48px; padding-bottom: 96px; --g-muted: #5e9e9c; }
+  .back { display: inline-block; margin-bottom: 32px; text-decoration: none; font-size: 15px; }
+  .meta { display: flex; align-items: center; gap: 8px; color: var(--g-muted); font-size: 14px; font-weight: 300; }
+  .meta span { letter-spacing: 1.5px; text-transform: uppercase; font-size: 12px; font-weight: 500; }
+  h1 { font-size: clamp(30px, 5vw, 42px); font-weight: 500; letter-spacing: -0.5px; line-height: 1.2; margin: 12px 0 32px; }
+  .body { font-size: 19px; line-height: 1.7; font-weight: 300; }
+  .body :global(p) { margin: 0 0 1.1em; }
+  .body :global(strong) { font-weight: 500; }
+  .body :global(em:only-child) { color: var(--g-muted); }
+  .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); }
+  .pager a { text-decoration: none; color: var(--text); font-weight: 500; line-height: 1.35; }
+  .pager a:hover { color: var(--accent); }
+  .pager small { display: block; color: var(--g-muted); font-weight: 300; font-size: 13px; margin-bottom: 2px; }
+  .next { text-align: end; }
+  .cta { margin-top: 40px; }
+  @media (prefers-color-scheme: dark) { .story { --g-muted: #8fc9c7; } }
+  @media (max-width: 600px) { .body { font-size: 18px; } .pager { grid-template-columns: 1fr; } .next { text-align: start; } }
+</style>
