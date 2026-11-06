@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import StageIcon from './StageIcon.astro';
 import { render } from 'astro:content';
 import { Image, getImage } from 'astro:assets';
-import { getStrings, homeFor, languages } from '../../i18n';
+import { getStrings, homeFor, languages, dirFor } from '../../i18n';
 import { stories, pagesFor, formatDate, gardenHome, imageFor, type Story } from '../../data/garden';
 
 interface Props { story: Story }
@@ -54,7 +54,7 @@ const schema = [{
       {prev ? <a class="prev" href={prev.url}><small>{g.previous}</small>{prev.entry.data.title}</a> : <span />}
       {next && <a class="next" href={next.url}><small>{g.next}</small>{next.entry.data.title}</a>}
     </nav>
-    <p class="cta"><a class="btn btn-primary" href={`${homeFor(locale)}#download`}>{g.getApp}</a></p>
+    <p class="cta"><a href={`${homeFor(locale)}#download`}>{g.getApp} {dirFor(locale) === 'rtl' ? '←' : '→'}</a></p>
   </article>
 </Base>
 <style>
@@ -64,7 +64,7 @@ const schema = [{
   .meta { display: flex; align-items: center; gap: 8px; color: var(--g-muted); font-size: 14px; font-weight: 300; }
   .meta span { letter-spacing: 1.5px; text-transform: uppercase; font-size: 12px; font-weight: 500; }
   h1 { font-size: clamp(30px, 5vw, 42px); font-weight: 500; letter-spacing: -0.5px; line-height: 1.2; margin: 12px 0 32px; }
-  .hero { width: 100%; height: auto; border-radius: 16px; border: 1px solid var(--line); margin: 0 0 36px; }
+  .hero { width: 100%; height: auto; border-radius: 16px; margin: 0 0 36px; }
   .body { font-size: 19px; line-height: 1.7; font-weight: 300; }
   .body :global(p) { margin: 0 0 1.1em; }
   .body :global(strong) { font-weight: 500; }
@@ -74,7 +74,9 @@ const schema = [{
   .pager a:hover { color: var(--accent); }
   .pager small { display: block; color: var(--g-muted); font-weight: 300; font-size: 13px; margin-bottom: 2px; }
   .next { text-align: end; }
-  .cta { margin-top: 40px; }
+  .cta { margin-top: 40px; font-weight: 500; }
+  .cta a { text-decoration: none; }
+  .cta a:hover { text-decoration: underline; }
   @media (prefers-color-scheme: dark) { .story { --g-muted: #8fc9c7; } }
   @media (max-width: 600px) { .body { font-size: 18px; } .pager { grid-template-columns: 1fr; } .next { text-align: start; } }
 </style>

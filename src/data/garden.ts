@@ -56,11 +56,11 @@ export async function pagesFor(locale: string) {
   return (await stories(locale)).filter((s) => s.published && s.lang === locale);
 }
 
-export function formatDate(date: Date, locale: string, withYear = true) {
-  return new Intl.DateTimeFormat(locale === 'ar' ? 'ar-DZ-u-nu-latn' : locale, {
-    day: 'numeric',
-    month: 'long',
-    ...(withYear ? { year: 'numeric' } : {}),
-    timeZone: 'UTC',
-  }).format(date);
+/** `long`: "January 15, 2024"; `month`: "Jan 2024" (the timeline); `day`: "January 15" (upcoming stories). */
+export function formatDate(date: Date, locale: string, style: 'long' | 'month' | 'day' = 'long') {
+  const opts: Intl.DateTimeFormatOptions =
+    style === 'month' ? { month: 'short', year: 'numeric' }
+    : style === 'day' ? { day: 'numeric', month: 'long' }
+    : { day: 'numeric', month: 'long', year: 'numeric' };
+  return new Intl.DateTimeFormat(locale === 'ar' ? 'ar-DZ-u-nu-latn' : locale, { ...opts, timeZone: 'UTC' }).format(date);
 }
