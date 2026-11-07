@@ -2,6 +2,7 @@
 title: The moment I realized PlugBrain is not only for kids
 description: I built PlugBrain for my son. Then I caught myself scrolling, and installed it on my own phone.
 date: 2024-06-15
+imageAlt: "The padlock from a tablet moves to a phone and asks a harder sum, 38 + 25, while feed cards fade out above the phone."
 stage: sprout
 draft: true
 ---
