@@ -2,6 +2,7 @@
 title: PlugBrain as a teaching example
 description: I needed a real app to teach students how mobile apps are built. I didn't want another to-do list.
 date: 2025-06-15
+imageAlt: "A whiteboard with a PlugBrain phone drawn on it, linked by arrows to three icons: a checklist, a test tube and an infinity loop for CI/CD."
 stage: seedling
 draft: true
 ---
