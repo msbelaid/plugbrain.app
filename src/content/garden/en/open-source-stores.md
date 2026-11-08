@@ -2,7 +2,7 @@
 title: Planting it on F-Droid and IzzyOnDroid
 description: Two open-source app stores brought PlugBrain its first users. A new Google rule could put them at risk.
 date: 2025-07-15
-imageAlt: "A sprout moves from a small pot to a bigger pot marked with a code symbol, where it grows taller."
+imageAlt: "A sprout moves from a small pot to a bigger pot marked with the F-Droid robot, where it grows taller."
 stage: seedling
 draft: true
 ---
