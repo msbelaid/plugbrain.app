@@ -4,7 +4,6 @@ description: I needed a real app to teach students how mobile apps are built. I 
 date: 2025-06-15
 imageAlt: "A whiteboard titled Modern Android Dev Courses, with a PlugBrain phone drawn next to the title."
 stage: seedling
-draft: true
 ---
 
 In 2025 I was training students at a non-profit association.

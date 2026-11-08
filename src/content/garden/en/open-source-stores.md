@@ -4,7 +4,6 @@ description: Two open-source app stores brought PlugBrain its first users. A new
 date: 2025-07-15
 imageAlt: "A sprout moves from a small pot to a bigger pot labeled F-Droid, where it grows taller."
 stage: seedling
-draft: true
 ---
 
 In June 2025, I sent PlugBrain to [F-Droid](https://f-droid.org/packages/app.plugbrain.android/).
