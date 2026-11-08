@@ -26,4 +26,4 @@ That taught me something too. Writing code is one step. Daring to open someone e
 
 Still, that summer PlugBrain stopped being only my app. It became a place to learn.
 
-[My announcement on Facebook](https://www.facebook.com/photo?fbid=1401905055060683)
+[Announcement on Facebook](https://www.facebook.com/photo?fbid=1401905055060683)
