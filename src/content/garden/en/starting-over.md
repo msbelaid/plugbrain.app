@@ -6,15 +6,17 @@ stage: sprout
 draft: true
 ---
 
-The little app on my son's tablet worked. But it was built for one child, on one tablet.
+The little app on my son's tablet worked. But inside, it was a mess.
 
-I wanted others to use it too, and the old code wasn't made for that.
+It had no tests. Everything was tangled together. Every change risked breaking something else.
 
-So on April 9, 2025, I created a new project. The first commit said it all: "Initial commit, an empty app."
+That was fine for one child on one tablet. Not for an app I wanted to share.
 
-This time I did it properly. Clean structure from day one. Lint checks on every change. Each feature tracked as an issue.
+So in April 2025, I started over, from an empty project.
 
-Two weeks later, I wrote another commit message: "First complete app!"
+This time I built it properly. Small, separate parts. Clean code from day one. Room for tests.
+
+Two weeks later, the new app could do everything the old one did.
 
 Then came the parts that make PlugBrain what it is: challenges that grow harder, and breaks that make them easier again.
 
