@@ -1,7 +1,7 @@
 ---
 title: PlugBrain as a teaching example
 description: I needed a real app to teach students how mobile apps are built. I didn't want another to-do list.
-date: 2025-07-15
+date: 2025-06-15
 stage: seedling
 draft: true
 ---
@@ -25,5 +25,3 @@ I hoped many of them would jump in. Only about one in ten tried to contribute.
 That taught me something too. Writing code is one step. Daring to open someone else's project is another.
 
 Still, that summer PlugBrain stopped being only my app. It became a place to learn.
-
-[A photo from the training](https://www.facebook.com/photo?fbid=1401905055060683)
