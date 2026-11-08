@@ -25,3 +25,5 @@ I hoped many of them would jump in. Only about one in ten tried to contribute.
 That taught me something too. Writing code is one step. Daring to open someone else's project is another.
 
 Still, that summer PlugBrain stopped being only my app. It became a place to learn.
+
+[My announcement on Facebook](https://www.facebook.com/photo?fbid=1401905055060683)
