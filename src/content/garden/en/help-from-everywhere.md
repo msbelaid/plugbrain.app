@@ -4,7 +4,6 @@ description: A few days after PlugBrain reached F-Droid, strangers started trans
 date: 2025-08-15
 imageAlt: "The PlugBrain plant in a pot, surrounded by speech bubbles saying hello in German, Chinese, Hindi, Japanese, Russian and Persian."
 stage: seedling
-draft: true
 ---
 
 A few days after PlugBrain arrived on F-Droid, I got a pull request from someone I had never met.

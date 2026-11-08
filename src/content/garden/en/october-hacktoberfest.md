@@ -3,7 +3,6 @@ title: The October a side project grew up
 description: In October 2025, Hacktoberfest brought PlugBrain six new contributors in a single month.
 date: 2025-10-15
 stage: sapling
-draft: true
 ---
 
 Every October, developers around the world join Hacktoberfest. For a month, they look for open-source projects to help.
