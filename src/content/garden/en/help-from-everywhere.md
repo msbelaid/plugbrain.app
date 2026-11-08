@@ -1,7 +1,8 @@
 ---
-title: Help from all over the world
+title: Code from all over the world
 description: A few days after PlugBrain reached F-Droid, strangers started translating it and sending code. I never asked them to.
 date: 2025-08-15
+imageAlt: "The PlugBrain plant in a pot, surrounded by speech bubbles saying hello in German, Chinese, Hindi, Japanese, Russian and Persian."
 stage: seedling
 draft: true
 ---
