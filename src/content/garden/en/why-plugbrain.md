@@ -2,8 +2,8 @@
 title: Why "PlugBrain"?
 description: The app started as MathLock. Finding a better name took a long list and a lot of searching.
 date: 2025-06-20
+imageAlt: "A sprout in a pot with a PlugBrain label, while old name labels, MathLock, Brainrot Killer and Math Focus, lie on the ground."
 stage: sprout
-draft: true
 ---
 
 At first, the app was called MathLock.

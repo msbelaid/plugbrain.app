@@ -2,8 +2,8 @@
 title: Starting over from an empty app
 description: In April 2025 I rebuilt PlugBrain from scratch, this time so it could grow beyond one tablet.
 date: 2025-04-15
+imageAlt: "A sprout moves from a cracked, messy pot with tangled roots to a clean pot of the same size."
 stage: sprout
-draft: true
 ---
 
 The little app on my son's tablet worked. But inside, it was a mess.
