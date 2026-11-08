@@ -2,7 +2,6 @@
 title: Starting over from an empty app
 description: In April 2025 I rebuilt PlugBrain from scratch, this time so it could grow beyond one tablet.
 date: 2025-04-15
-imageAlt: "A parent kneels and plants a seed in fresh soil while a child waters it with a watering can."
 stage: sprout
 draft: true
 ---
