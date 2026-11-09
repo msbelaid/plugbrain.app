@@ -3,7 +3,6 @@ title: User experience redesign
 description: An Algerian designer drew a new PlugBrain in Figma. Contributors from around the world built it, one piece at a time.
 date: 2026-10-23
 stage: youngTree
-draft: true
 ---
 
 PlugBrain worked. But it looked like what it was: an app designed by a developer.

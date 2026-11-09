@@ -4,7 +4,11 @@ import { defaultLocale, homeFor } from '../i18n';
 
 // Featured images: src/assets/garden/<slug>.png (1200×630), shared by every language.
 const images = import.meta.glob<{ default: ImageMetadata }>('../assets/garden/*.png', { eager: true });
+/** Illustrations stay in src/assets/garden but are not shown on the garden for now. Set to true to show them again. */
+export const SHOW_IMAGES = false;
+
 export function imageFor(slug: string): ImageMetadata | undefined {
+  if (!SHOW_IMAGES) return undefined;
   return images[`../assets/garden/${slug}.png`]?.default;
 }
 

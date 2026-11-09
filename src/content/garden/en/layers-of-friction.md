@@ -3,7 +3,6 @@ title: Layers of friction
 description: Most apps try to remove friction. PlugBrain adds it on purpose, one layer at a time, so you think twice before you keep scrolling.
 date: 2026-10-25
 stage: youngTree
-draft: true
 ---
 
 Most apps want to feel smooth. Every tap is one less step, every screen opens faster, every scroll goes on forever.

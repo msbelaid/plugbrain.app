@@ -3,7 +3,6 @@ title: App icon redesign
 description: An Australian graphic designer volunteered to redraw PlugBrain's icon, and gave the app a face people remember.
 date: 2026-02-15
 stage: youngTree
-draft: true
 ---
 
 By late 2025, PlugBrain's icon was showing its age. One person on GitHub said it plainly: it was a bit ugly.
