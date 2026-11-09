@@ -3,7 +3,6 @@ title: No internet, on purpose
 description: PlugBrain can't go online, and that's a choice. An app that helps you put your phone down shouldn't profit from keeping you on it.
 date: 2025-10-15
 stage: sapling
-draft: true
 ---
 
 Most focus apps are free. But nothing is really free.

@@ -3,7 +3,6 @@ title: Planting it on Google Play
 description: Getting PlugBrain onto Google Play took testers, a privacy policy, a manual review and two rejections.
 date: 2025-10-16
 stage: sapling
-draft: true
 ---
 
 F-Droid and IzzyOnDroid brought PlugBrain its first users. But most Android phones only look in one place: Google Play.
