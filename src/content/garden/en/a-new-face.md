@@ -1,7 +1,7 @@
 ---
 title: App icon redesign
 description: An Australian graphic designer volunteered to redraw PlugBrain's icon, and gave the app a face people remember.
-date: 2026-02-23
+date: 2025-12-10
 stage: youngTree
 ---
 
