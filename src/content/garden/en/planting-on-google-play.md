@@ -12,7 +12,7 @@ Planting it there was a different kind of work.
 
 First, Play doesn't let a new developer publish straight away. The app had to go to a group of testers, who used it for two weeks before I could even ask for a public release.
 
-Then came the paperwork. A privacy policy. Forms about every kind of data the app touches. For an app that collects nothing and never goes online, it was a lot of boxes to tick, but each one had to be right.
+Then came the privacy rules. Play asks every app for a privacy policy and a clear account of the data it touches. Even for an app that collects nothing and never goes online, every answer had to be exact.
 
 The hardest part was the accessibility permission. PlugBrain needs it to notice when you open a blocked app. Google treats that permission very carefully, so a person had to review the app by hand.
 
