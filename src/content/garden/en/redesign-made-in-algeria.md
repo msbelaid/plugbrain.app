@@ -21,5 +21,3 @@ Contributors picked them up, one by one, from different countries. Each piece ca
 It took most of 2026.
 
 In October, version 1.6 shipped with the new look: a step-by-step onboarding and a calm, simple dashboard.
-
-Made in Algeria, built by the world.
