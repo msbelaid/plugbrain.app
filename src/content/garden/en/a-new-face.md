@@ -1,6 +1,6 @@
 ---
 title: A new face from down under
-description: An Australian graphic designer volunteered to redraw PlugBrain's icon. The result: a face people remember.
+description: An Australian graphic designer volunteered to redraw PlugBrain's icon, and gave the app a face people remember.
 date: 2026-02-15
 stage: youngTree
 draft: true
