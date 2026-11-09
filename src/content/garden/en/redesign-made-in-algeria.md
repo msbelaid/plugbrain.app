@@ -1,7 +1,7 @@
 ---
 title: User experience redesign
 description: An Algerian designer drew a new PlugBrain in Figma. Contributors from around the world built it, one piece at a time.
-date: 2026-10-23
+date: 2025-12-30
 stage: youngTree
 ---
 
@@ -10,6 +10,8 @@ PlugBrain worked. But it looked like what it was: an app designed by a developer
 Then [Hichem](https://github.com/HichemDahaoui), a designer from Algeria like me, offered to help.
 
 He redrew the whole app in Figma. New colors. Calm teal instead of loud tones. Cards, buttons and number inputs, each one designed to be reused.
+
+The whole design is open, in [Figma](https://www.figma.com/design/uYAs8XFheRGrCAcSqTQ5Sb/PlugBrain---Github). On December 30, 2025, he [added the source files](https://github.com/msbelaid/PlugBrain/commit/705be87e9940daa925e178448a73e933bc5373e6) to the PlugBrain repository.
 
 A design is only a picture until someone builds it.
 
