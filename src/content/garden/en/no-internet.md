@@ -1,18 +1,20 @@
 ---
 title: No internet, on purpose
 description: PlugBrain can't go online, and that's a choice. An app that helps you put your phone down shouldn't profit from keeping you on it.
-date: 2025-06-22
-stage: seedling
+date: 2025-10-15
+stage: sapling
 draft: true
 ---
 
-Many focus apps are free. But someone has to pay.
+Most focus apps are free. But nothing is really free.
 
-Some show ads. Others collect data about how you use your phone, and that data has buyers: companies that track which apps people open, and for how long.
+Some fill your screen with ads. Others quietly collect your app usage data and sell it to app intelligence companies, who want to know which apps people open, when, and for how long.
 
-Either way, the money comes from your time on the screen. The longer you stay, the more they earn.
+Either way, they make money from your time on the screen. The longer you stay on your phone, the more they earn.
 
-That's the opposite of what a focus app should want.
+So an app that promises to help you break the habit is paid to keep you hooked.
+
+We didn't want to build that.
 
 So we made a different choice. PlugBrain is free. It's open source, so anyone can read every line of its code. And it collects no data at all.
 
