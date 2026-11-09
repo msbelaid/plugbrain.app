@@ -1,7 +1,7 @@
 ---
 title: Layers of friction
 description: Most apps try to remove friction. PlugBrain adds it on purpose, one layer at a time, so you think twice before you keep scrolling.
-date: 2026-10-25
+date: 2026-09-05
 stage: youngTree
 ---
 
