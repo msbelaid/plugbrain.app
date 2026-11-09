@@ -1,25 +1,25 @@
 ---
 title: A new face from down under
-description: An Australian graphic designer volunteered to redraw PlugBrain's icon. He gave it a face people remember.
+description: An Australian graphic designer volunteered to redraw PlugBrain's icon. The result: a face people remember.
 date: 2026-02-15
 stage: youngTree
 draft: true
 ---
 
-By late 2025, PlugBrain's icon was starting to show its age. One person on GitHub said it plainly: the icon was a bit ugly.
+By late 2025, PlugBrain's icon was showing its age. One person on GitHub said it plainly: it was a bit ugly.
 
-They were right. So I opened an issue with a short brief. Serious, focused, minimal. A brain and a plug, or something new.
+So I opened an issue with a short brief. Serious, focused, minimal. A brain and a plug, or something new.
 
-A few weeks later, a message arrived from [Travis](https://github.com/travis-jeans), a graphic designer in Australia.
+PlugBrain was listed on contribute.design, a board where open-source projects look for designers. That's where [Travis](https://github.com/travis-jeans), a graphic designer in Australia, found it.
 
-He offered to do it for free.
+Travis had used app blockers for years, and liked PlugBrain's idea: "recruiting additional mental resources toward unblocking an app."
 
-He didn't just draw. He studied other focus apps, compared styles, and shared his research step by step. He explained every choice.
+Travis asked before sending a single sketch, then shared every step on GitHub: research on other focus apps, a moodboard, pages of sketches. Floating brains, math symbols, even 3D brains made of cubes.
 
-In February 2026, he delivered the new icon: a blocky brain, inspired by Tetris pieces, with a plug on top. Light and dark versions. A full style guide.
+One direction stood out to me: a brain built from blocks, like Tetris pieces, with a plug inside.
 
-It was his first logo for an open-source project.
+The final icon mixed the best ideas. Rounded blocks, an equals sign for the plug slot, colors checked for contrast, and a version that still reads in one color.
 
-Today it's on the store pages, on this website, and on every phone that runs PlugBrain.
+It came with a full style guide. And it was Travis's first logo for an open-source project.
 
-[Travis tells the story of the redesign on his blog](https://futurehorizondesign.net.au/posts/2026-02-26-A-Logo-Redesign-For-An-Open-Source-Project.html)
+[Travis tells the whole story on the Future Horizon Design blog](https://futurehorizondesign.net.au/posts/2026-02-26-A-Logo-Redesign-For-An-Open-Source-Project.html)
