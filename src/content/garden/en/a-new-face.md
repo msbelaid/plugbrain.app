@@ -21,3 +21,5 @@ In February 2026, he delivered the new icon: a blocky brain, inspired by Tetris 
 It was his first logo for an open-source project.
 
 Today it's on the store pages, on this website, and on every phone that runs PlugBrain.
+
+[Travis tells the story of the redesign on his blog](https://futurehorizondesign.net.au/posts/2026-02-26-A-Logo-Redesign-For-An-Open-Source-Project.html)
