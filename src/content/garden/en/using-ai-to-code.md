@@ -18,3 +18,5 @@ For students, I think it's different. If they use it in the early stages, it can
 On PlugBrain, I used AI to finish the remaining redesign work and the boring refactoring tasks.
 
 But before that, I guarded everything with tests and a solid CI pipeline. If the AI breaks something, the tests say so before anything ships.
+
+We remain the masters. The AI takes the repetitive work, so we can focus on the bigger questions: architecture, user experience, what the app should become.
