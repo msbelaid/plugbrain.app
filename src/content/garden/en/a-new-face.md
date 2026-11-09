@@ -1,5 +1,5 @@
 ---
-title: A new face from down under
+title: App icon redesign
 description: An Australian graphic designer volunteered to redraw PlugBrain's icon, and gave the app a face people remember.
 date: 2026-02-15
 stage: youngTree
