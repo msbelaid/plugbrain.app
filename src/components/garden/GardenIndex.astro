@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import StageIcon from './StageIcon.astro';
 import { Image } from 'astro:assets';
 import { getStrings, languages, dirFor } from '../../i18n';
-import { stories, stageOrder, formatDate, gardenHome, imageFor } from '../../data/garden';
+import { stories, stageOrder, formatDate, gardenHome, imageFor, START_HERE } from '../../data/garden';
 
 const locale = Astro.currentLocale ?? 'en';
 const t = getStrings(locale);
@@ -16,6 +16,7 @@ const shown = next ? [...published, next] : published;
 const stages = stageOrder
   .map((stage) => ({ stage, items: shown.filter((s) => s.entry.data.stage === stage) }))
   .filter((s) => s.items.length);
+const startHere = START_HERE.map((slug, i) => ({ story: published.find((s) => s.slug === slug), why: g.startHereWhy[i] })).filter((x) => x.story);
 // A story not yet translated keeps its own language and direction inside the page.
 const foreign = (lang: string) => (lang === locale ? {} : { lang, dir: dirFor(lang) });
 const alternates = Object.fromEntries(Object.keys(languages).map((l) => [l, gardenHome(l)]));
@@ -41,6 +42,19 @@ const schema = [{
       <h1><StageIcon stage="seedling" size={56} />{g.title}</h1>
       <p class="sub">{g.intro}</p>
     </header>
+    {startHere.length > 0 && (
+      <aside class="start">
+        <h2>{g.startHere}</h2>
+        <ol>
+          {startHere.map(({ story, why }) => (
+            <li>
+              <a href={story!.url} {...foreign(story!.lang)}>{story!.entry.data.title}</a>
+              <span>{why}</span>
+            </li>
+          ))}
+        </ol>
+      </aside>
+    )}
     <ol class="tl">
       {stages.map(({ stage, items }) => (
         <li class="stage">
@@ -77,7 +91,16 @@ const schema = [{
   .garden { max-width: 720px; padding-top: 64px; padding-bottom: 96px; --g-muted: #5e9e9c; --stem: #8fc9c7; }
   h1 { display: flex; align-items: center; gap: 14px; font-size: clamp(32px, 5vw, 44px); font-weight: 500; letter-spacing: -0.5px; line-height: 1.15; margin: 0; }
   h1 :global(.stage-icon) { width: 1.3em; height: 1.3em; margin-inline-start: -0.15em; }
-  .sub { color: var(--g-muted); font-weight: 300; font-size: 18px; margin: 10px 0 48px; }
+  .sub { color: var(--g-muted); font-weight: 300; font-size: 18px; margin: 10px 0 32px; }
+  .start { border: 1px solid var(--stem); border-radius: 14px; padding: 20px 24px; margin: 0 0 48px; }
+  .start h2 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--g-muted); font-weight: 500; margin: 0 0 12px; }
+  .start ol { counter-reset: start; }
+  .start li { counter-increment: start; position: relative; padding-inline-start: 28px; margin: 0 0 10px; }
+  .start li:last-child { margin-bottom: 0; }
+  .start li::before { content: counter(start); position: absolute; inset-inline-start: 0; top: 1px; color: var(--g-muted); font-weight: 500; }
+  .start a { display: block; font-size: 17px; font-weight: 500; color: var(--text); text-decoration: none; line-height: 1.35; }
+  .start a:hover { color: var(--accent); text-decoration: underline; }
+  .start span { display: block; font-size: 14px; color: var(--g-muted); font-weight: 300; }
   ol { list-style: none; margin: 0; padding: 0; }
   .tl { position: relative; }
   .stage { position: relative; padding-bottom: 8px; }
@@ -96,6 +119,7 @@ const schema = [{
   /* An English title on the French or Arabic page still lines up with the others. */
   .story [dir] { text-align: start; }
   :global([dir='rtl']) .story [dir='ltr'] { text-align: right; }
+  :global([dir='rtl']) .start [dir='ltr'] { text-align: right; }
   .soon { opacity: 0.4; }
   .soon::before { border-style: dashed; }
   .foot { margin-top: 32px; font-size: 14px; color: var(--g-muted); font-weight: 300; }

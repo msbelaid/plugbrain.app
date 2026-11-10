@@ -255,6 +255,8 @@ export default {
     title: 'Le jardin de PlugBrain',
     metaTitle: 'Le jardin de PlugBrain : comment une petite app a grandi',
     intro: 'Comment une petite app a grandi, une histoire à la fois.',
+    startHere: 'Première visite ? Commencez par ces trois histoires.',
+    startHereWhy: ['Pourquoi l’app existe.', 'Comment elle fonctionne, et pourquoi elle est exigeante exprès.', 'Ce qu’elle ne fera jamais de vos données.'],
     metaDescription: 'De courtes histoires sur la croissance de PlugBrain, d’un verrou à calcul conçu pour un enfant à un bloqueur d’apps libre et gratuit utilisé partout dans le monde.',
     stages: { seed: 'Graine', sprout: 'Pousse', seedling: 'Plantule', sapling: 'Jeune plant', youngTree: 'Jeune arbre', blossom: 'Floraison', fruit: 'Fruit' },
     coming: 'À venir le {date}',

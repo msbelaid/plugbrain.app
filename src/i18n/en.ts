@@ -252,6 +252,9 @@ export default {
     title: 'The PlugBrain garden',
     metaTitle: 'The PlugBrain garden: how a small app grew',
     intro: 'How a small app grew, one story at a time.',
+    startHere: 'New here? Start with these three.',
+    // One line per story in the "Start here" card, in the same order as START_HERE.
+    startHereWhy: ['Why the app exists.', 'How it works, and why it is hard on purpose.', 'What it will never do with your data.'],
     metaDescription: 'Short stories about how PlugBrain grew, from a math lock built for one child to a free, open-source app blocker used around the world.',
     stages: { seed: 'Seed', sprout: 'Sprout', seedling: 'Seedling', sapling: 'Sapling', youngTree: 'Young tree', blossom: 'Blossom', fruit: 'Fruit' },
     // {date} is replaced with the publication date.

@@ -12,6 +12,9 @@ export function imageFor(slug: string): ImageMetadata | undefined {
   return images[`../assets/garden/${slug}.png`]?.default;
 }
 
+/** The three stories a first-time visitor should read, shown in the "Start here" card. */
+export const START_HERE = ['started-for-my-son', 'layers-of-friction', 'no-internet'];
+
 export type Stage = CollectionEntry<'garden'>['data']['stage'];
 export const stageOrder: Stage[] = ['seed', 'sprout', 'seedling', 'sapling', 'youngTree', 'blossom', 'fruit'];
 
