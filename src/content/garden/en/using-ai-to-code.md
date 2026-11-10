@@ -3,6 +3,7 @@ title: "Words on using AI to code"
 description: "Why I was hesitant to let AI write code, and how I use it now."
 date: 2026-10-15
 stage: youngTree
+draft: true
 ---
 
 For a long time, I didn't want AI to write my code.
