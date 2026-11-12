@@ -142,6 +142,10 @@ export default {
     title: 'From people who use it.',
     items: [
       {
+        text: "This app is very useful when I'm studying. Sometimes I get carried away with social media and it forces me to solve math problems, which helps me limit my time on social media while studying.",
+        who: 'Vietnamese user, Google Play, translated',
+      },
+      {
         text: "Finally, a focus app which works. It's way too easy to get sucked into YouTube otherwise. This app helps navigate that balance perfectly!",
         who: 'Google Play review',
       },
@@ -221,9 +225,11 @@ export default {
       { title: 'Talk to us', text: 'Ideas, feedback and help on r/PlugBrain.', href: 'https://www.reddit.com/r/PlugBrain/' },
     ],
     contributors: 'Contributors',
+    thanks: 'Thank you to everyone who translated the app, wrote code, reported a bug or shared an idea. Each of these contributions made PlugBrain better.',
     credits: [
+      { role: 'Built and maintained by', name: 'Mohammed-Said Belaid', login: 'msbelaid' },
       { role: 'UX & UI design', name: 'Hichem Dahaoui', login: 'HichemDahaoui' },
-      { role: 'App icon', name: 'travis-jeans', login: 'travis-jeans' },
+      { role: 'App icon', name: 'Travis Jeans', login: 'travis-jeans' },
     ],
   },
   footer: {
@@ -236,7 +242,7 @@ export default {
     license: 'Free software under the GPL-3.0 license.',
     made: 'Made in Algeria with care.',
     // html
-    credit: 'Design by <a href="https://github.com/HichemDahaoui">Hichem Dahaoui</a>, icon by <a href="https://github.com/travis-jeans">travis-jeans</a>.',
+    credit: 'Built and maintained by <a href="https://github.com/msbelaid">Mohammed-Said Belaid</a>. Design by <a href="https://github.com/HichemDahaoui">Hichem Dahaoui</a>, icon by <a href="https://github.com/travis-jeans">Travis Jeans</a>.',
     // {version} is replaced with the latest release, e.g. 1.6.0.
     version: 'Latest version: {version}',
     language: 'Language',

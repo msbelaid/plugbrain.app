@@ -39,6 +39,7 @@ const icons = ['globe', 'puzzle', 'palette', 'message'];
     </ul>
     <div class="people reveal">
       <h3>{c.contributors}</h3>
+      <p class="thanks">{c.thanks}</p>
       <ul>
         {contributors.map((login) => (
           <li><a href={`https://github.com/${login}`} title={login}><img src={`/contributors/${login}.webp`} width="44" height="44" alt={login} loading="lazy" /></a></li>
@@ -68,6 +69,7 @@ const icons = ['globe', 'puzzle', 'palette', 'message'];
   .credits a:hover { color: var(--teal); }
   .people { margin-top: 40px; }
   .people h3 { font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--on-dark-faint); font-weight: 600; }
+  .thanks { margin: 10px 0 0; max-width: 640px; color: var(--on-dark-muted); font-size: 16px; line-height: 1.55; }
   .people ul { list-style: none; padding: 0; margin: 16px 0 0; display: flex; flex-wrap: wrap; gap: 10px; }
   .people img { border-radius: 50%; box-shadow: 0 0 0 2px var(--navy), 0 0 0 3.5px rgba(173, 254, 253, 0.18); transition: transform 0.2s ease, box-shadow 0.2s ease; }
   .people a:hover img { transform: translateY(-2px); box-shadow: 0 0 0 2px var(--navy), 0 0 0 3.5px var(--teal); }
