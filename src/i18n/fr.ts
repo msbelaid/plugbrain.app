@@ -153,6 +153,11 @@ export default {
         who: 'Utilisateur vietnamien, Google Play, traduit du vietnamien',
       },
       {
+        text: 'J’adore PlugBrain. C’est une appli fantastique… Merci d’avoir créé une appli aussi utile, gratuite et respectueuse de la vie privée !',
+        who: 'rahaf-mo, sur GitHub, traduit de l’anglais',
+        href: 'https://github.com/msbelaid/PlugBrain/issues/266',
+      },
+      {
         text: 'Enfin une appli de concentration qui marche. Sans elle, on se fait beaucoup trop facilement aspirer par YouTube. Elle aide à trouver le juste équilibre, parfaitement\u202f!',
         who: 'Avis sur Google Play, traduit de l’anglais',
       },

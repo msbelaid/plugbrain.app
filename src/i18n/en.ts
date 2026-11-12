@@ -146,6 +146,11 @@ export default {
         who: 'Vietnamese user, Google Play, translated',
       },
       {
+        text: "I really love PlugBrain. It's a fantastic app… Thank you for creating such a useful, free, and privacy-friendly app!",
+        who: 'rahaf-mo, on GitHub',
+        href: 'https://github.com/msbelaid/PlugBrain/issues/266',
+      },
+      {
         text: "Finally, a focus app which works. It's way too easy to get sucked into YouTube otherwise. This app helps navigate that balance perfectly!",
         who: 'Google Play review',
       },
