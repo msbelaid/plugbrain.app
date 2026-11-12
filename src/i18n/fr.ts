@@ -149,6 +149,10 @@ export default {
     title: 'Ce qu’en disent ceux qui l’utilisent.',
     items: [
       {
+        text: 'Cette appli m’est très utile quand j’étudie. Parfois, j’ouvre les réseaux sociaux par réflexe, et elle m’oblige à résoudre des calculs, ce qui m’aide à limiter mon temps sur les réseaux pendant mes révisions.',
+        who: 'Utilisateur vietnamien, Google Play, traduit du vietnamien',
+      },
+      {
         text: 'Enfin une appli de concentration qui marche. Sans elle, on se fait beaucoup trop facilement aspirer par YouTube. Elle aide à trouver le juste équilibre, parfaitement\u202f!',
         who: 'Avis sur Google Play, traduit de l’anglais',
       },
@@ -226,9 +230,11 @@ export default {
       { title: 'Discuter', text: 'Idées, retours et entraide sur r/PlugBrain.', href: 'https://www.reddit.com/r/PlugBrain/' },
     ],
     contributors: 'Contributeurs',
+    thanks: 'Merci à toutes celles et ceux qui ont traduit l’appli, écrit du code, signalé un bug ou partagé une idée. Chacune de ces contributions a rendu PlugBrain meilleure.',
     credits: [
+      { role: 'Conçue et maintenue par', name: 'Mohammed-Said Belaid', login: 'msbelaid' },
       { role: 'Design UX et UI', name: 'Hichem Dahaoui', login: 'HichemDahaoui' },
-      { role: 'Icône de l’appli', name: 'travis-jeans', login: 'travis-jeans' },
+      { role: 'Icône de l’appli', name: 'Travis Jeans', login: 'travis-jeans' },
     ],
   },
   footer: {
@@ -240,7 +246,7 @@ export default {
     privacy: 'Confidentialité',
     license: 'Logiciel libre sous licence GPL-3.0.',
     made: 'Fait avec soin en Algérie.',
-    credit: 'Design par <a href="https://github.com/HichemDahaoui">Hichem Dahaoui</a>, icône par <a href="https://github.com/travis-jeans">travis-jeans</a>.',
+    credit: 'Conçue et maintenue par <a href="https://github.com/msbelaid">Mohammed-Said Belaid</a>. Design par <a href="https://github.com/HichemDahaoui">Hichem Dahaoui</a>, icône par <a href="https://github.com/travis-jeans">Travis Jeans</a>.',
     version: 'Dernière version\u00a0: {version}',
     language: 'Langue',
     copyright: 'Les contributeurs de PlugBrain',

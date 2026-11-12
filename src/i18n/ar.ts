@@ -141,6 +141,10 @@ export default {
     title: 'بشهادة من يستخدمونه.',
     items: [
       {
+        text: 'هذا التطبيق مفيد جدًا عندما أدرس. أحيانًا أفتح مواقع التواصل الاجتماعي بحكم العادة، فيجبرني على حل مسائل حسابية، وهذا يساعدني على الحدّ من وقتي على مواقع التواصل أثناء الدراسة.',
+        who: 'مستخدم فيتنامي على Google Play، مترجمة من الفيتنامية',
+      },
+      {
         text: 'أخيرًا تطبيق تركيز يعمل فعلًا. من السهل جدًا أن يبتلعك YouTube، وهذا التطبيق يساعدك على إيجاد التوازن بشكل مثالي!',
         who: 'مراجعة على Google Play، مترجمة من الإنجليزية',
       },
@@ -218,9 +222,11 @@ export default {
       { title: 'تحدّث إلينا', text: 'أفكار وملاحظات ومساعدة على r/PlugBrain.', href: 'https://www.reddit.com/r/PlugBrain/' },
     ],
     contributors: 'المساهمون',
+    thanks: 'شكرًا لكل من ترجم التطبيق، أو كتب شيفرة، أو أبلغ عن مشكلة، أو شارك فكرة. كل مساهمة من هذه جعلت PlugBrain أفضل.',
     credits: [
+      { role: 'التطوير والصيانة', name: 'محمد سعيد بلعيد', login: 'msbelaid' },
       { role: 'تصميم تجربة المستخدم والواجهة', name: 'Hichem Dahaoui', login: 'HichemDahaoui' },
-      { role: 'أيقونة التطبيق', name: 'travis-jeans', login: 'travis-jeans' },
+      { role: 'أيقونة التطبيق', name: 'Travis Jeans', login: 'travis-jeans' },
     ],
   },
   footer: {
@@ -232,7 +238,7 @@ export default {
     privacy: 'سياسة الخصوصية',
     license: 'برنامج حر بترخيص GPL-3.0.',
     made: 'صُنع في الجزائر بعناية.',
-    credit: 'التصميم: <a href="https://github.com/HichemDahaoui">Hichem Dahaoui</a>، والأيقونة: <a href="https://github.com/travis-jeans">travis-jeans</a>.',
+    credit: 'التطوير والصيانة: <a href="https://github.com/msbelaid">محمد سعيد بلعيد</a>. التصميم: <a href="https://github.com/HichemDahaoui">Hichem Dahaoui</a>، والأيقونة: <a href="https://github.com/travis-jeans">Travis Jeans</a>.',
     version: 'أحدث إصدار: {version}',
     language: 'اللغة',
     copyright: 'مساهمو PlugBrain',
