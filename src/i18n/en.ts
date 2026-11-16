@@ -27,6 +27,8 @@ export default {
     home: 'PlugBrain home',
     // {stars} is replaced with the GitHub star count.
     stars: 'GitHub, {stars} stars',
+    // Short label on the header's GitHub button.
+    star: 'Star',
   },
   stores: {
     getItOn: 'Get it on',
@@ -275,6 +277,7 @@ export default {
     // Shown on a story that isn't translated yet.
     englishOnly: 'This story is only in English for now.',
     getApp: 'Try PlugBrain',
+    star: 'Like these stories? A star on GitHub helps others find PlugBrain.',
   },
   notFound: {
     title: 'This page took a break.',

@@ -27,6 +27,7 @@ export default {
     main: 'القائمة الرئيسية',
     home: 'الصفحة الرئيسية لـ PlugBrain',
     stars: 'GitHub، {stars} نجمة',
+    star: 'نجمة',
   },
   stores: {
     getItOn: 'احصل عليه من',
@@ -268,6 +269,7 @@ export default {
     previous: 'السابقة',
     englishOnly: 'هذه القصة متوفرة بالإنجليزية فقط حاليًا.',
     getApp: 'جرّب PlugBrain',
+    star: 'أعجبتك هذه القصص؟ نجمة على GitHub تساعد الآخرين على اكتشاف PlugBrain.',
   },
   notFound: {
     title: 'هذه الصفحة في استراحة.',

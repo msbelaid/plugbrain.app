@@ -27,6 +27,7 @@ export default {
     main: 'Navigation principale',
     home: 'Accueil PlugBrain',
     stars: 'GitHub, {stars}\u00a0étoiles',
+    star: 'Étoile',
   },
   stores: {
     getItOn: 'Disponible sur',
@@ -276,6 +277,7 @@ export default {
     previous: 'Précédente',
     englishOnly: 'Cette histoire n’existe qu’en anglais pour l’instant.',
     getApp: 'Essayer PlugBrain',
+    star: 'Ces histoires te plaisent\u00a0? Une étoile sur GitHub aide d’autres personnes à trouver PlugBrain.',
   },
   notFound: {
     title: 'Cette page fait une pause.',
