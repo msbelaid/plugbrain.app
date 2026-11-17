@@ -69,6 +69,9 @@ const schema = [{
   .body :global(p) { margin: 0 0 1.1em; }
   .body :global(strong) { font-weight: 500; }
   .body :global(em:only-child) { color: var(--g-muted); }
+  .body :global(img) { display: block; width: 100%; height: auto; margin: 1.6em 0 1.2em; border-radius: 16px; }
+  .body :global(ol) { margin: 0 0 1.6em; padding-inline-start: 1.4em; }
+  .body :global(li) { margin: 0 0 0.4em; }
   .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); }
   .pager a { text-decoration: none; color: var(--text); font-weight: 500; line-height: 1.35; }
   .pager a:hover { color: var(--accent); }
