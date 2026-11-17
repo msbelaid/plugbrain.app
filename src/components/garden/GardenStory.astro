@@ -19,16 +19,16 @@ const imgAlt = story.entry.data.imageAlt ?? '';
 // Share image for link previews: the featured image as a 1200×630 PNG.
 const share = img ? { src: (await getImage({ src: img, width: 1200, format: 'png' })).src, alt: imgAlt || title } : undefined;
 
-// Neighbours in the timeline, published ones only.
+// Neighbours in the timeline, published ones only. An unlisted story isn't in the timeline, so it has none.
 const all = (await stories(locale)).filter((s) => s.published);
 const i = all.findIndex((s) => s.slug === story.slug);
-const prev = all[i - 1];
-const next = all[i + 1];
+const prev = i > 0 ? all[i - 1] : undefined;
+const next = i >= 0 ? all[i + 1] : undefined;
 
 // Languages this story is published in, for search engines.
 const alternates: Record<string, string> = {};
 for (const l of Object.keys(languages)) {
-  const page = (await pagesFor(l)).find((s) => s.slug === story.slug);
+  const page = (await pagesFor(l, true)).find((s) => s.slug === story.slug);
   if (page) alternates[l] = page.url;
 }
 const schema = [{

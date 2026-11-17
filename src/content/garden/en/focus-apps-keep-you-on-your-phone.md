@@ -3,6 +3,7 @@ title: Most focus apps want you on your phone
 description: Focus apps are measured like any other app, by how much you use them. PlugBrain is built to get you off the screen.
 date: 2026-11-17
 stage: youngTree
+unlisted: true
 ---
 
 A focus app should work best when you stop using your phone. Including the app itself.

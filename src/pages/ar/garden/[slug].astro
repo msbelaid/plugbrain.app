@@ -3,7 +3,7 @@ import GardenStory from '../../../components/garden/GardenStory.astro';
 import { pagesFor } from '../../../data/garden';
 
 export async function getStaticPaths() {
-  return (await pagesFor('ar')).map((story) => ({ params: { slug: story.slug }, props: { story } }));
+  return (await pagesFor('ar', true)).map((story) => ({ params: { slug: story.slug }, props: { story } }));
 }
 ---
 <GardenStory story={Astro.props.story} />
