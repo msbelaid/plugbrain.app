@@ -15,6 +15,8 @@ const garden = defineCollection({
     /** Describes the featured image src/assets/garden/<slug>.png, for screen readers and link previews. */
     imageAlt: z.string().optional(),
     stage: z.enum(['seed', 'sprout', 'seedling', 'sapling', 'youngTree', 'blossom', 'fruit']),
+    /** Build the page but leave it out of the garden index, the timeline pager, the RSS feeds and the sitemap. Reachable only by its link. */
+    unlisted: z.boolean().default(false),
     /** Keep a story out of the site entirely while it is being written. */
     draft: z.boolean().default(false),
   }),

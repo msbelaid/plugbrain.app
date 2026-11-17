@@ -40,8 +40,8 @@ function split(id: string) {
  * Every story in timeline order, in `locale` where translated and in English otherwise.
  * Future-dated stories are included with `published: false` so the index can show the next one.
  */
-export async function stories(locale: string): Promise<Story[]> {
-  const all = await getCollection('garden', ({ data }) => !data.draft);
+export async function stories(locale: string, includeUnlisted = false): Promise<Story[]> {
+  const all = await getCollection('garden', ({ data }) => !data.draft && (includeUnlisted || !data.unlisted));
   const now = new Date();
   const bySlug = new Map<string, Story>();
   for (const entry of all) {
@@ -55,9 +55,12 @@ export async function stories(locale: string): Promise<Story[]> {
   return [...bySlug.values()].sort((a, b) => a.entry.data.date.getTime() - b.entry.data.date.getTime());
 }
 
-/** Stories that have their own page in `locale` (published, and written in that language). */
-export async function pagesFor(locale: string) {
-  return (await stories(locale)).filter((s) => s.published && s.lang === locale);
+/**
+ * Stories that have their own page in `locale` (published, and written in that language).
+ * `includeUnlisted` adds stories marked `unlisted`, which get a page but appear nowhere else.
+ */
+export async function pagesFor(locale: string, includeUnlisted = false) {
+  return (await stories(locale, includeUnlisted)).filter((s) => s.published && s.lang === locale);
 }
 
 /** `long`: "January 15, 2024"; `month`: "Jan 2024" (the timeline); `day`: "January 15" (upcoming stories). */

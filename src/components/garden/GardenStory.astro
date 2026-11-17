@@ -19,16 +19,16 @@ const imgAlt = story.entry.data.imageAlt ?? '';
 // Share image for link previews: the featured image as a 1200×630 PNG.
 const share = img ? { src: (await getImage({ src: img, width: 1200, format: 'png' })).src, alt: imgAlt || title } : undefined;
 
-// Neighbours in the timeline, published ones only.
+// Neighbours in the timeline, published ones only. An unlisted story isn't in the timeline, so it has none.
 const all = (await stories(locale)).filter((s) => s.published);
 const i = all.findIndex((s) => s.slug === story.slug);
-const prev = all[i - 1];
-const next = all[i + 1];
+const prev = i > 0 ? all[i - 1] : undefined;
+const next = i >= 0 ? all[i + 1] : undefined;
 
 // Languages this story is published in, for search engines.
 const alternates: Record<string, string> = {};
 for (const l of Object.keys(languages)) {
-  const page = (await pagesFor(l)).find((s) => s.slug === story.slug);
+  const page = (await pagesFor(l, true)).find((s) => s.slug === story.slug);
   if (page) alternates[l] = page.url;
 }
 const schema = [{
@@ -69,6 +69,9 @@ const schema = [{
   .body :global(p) { margin: 0 0 1.1em; }
   .body :global(strong) { font-weight: 500; }
   .body :global(em:only-child) { color: var(--g-muted); }
+  .body :global(img) { display: block; width: 100%; height: auto; margin: 1.6em 0 1.2em; border-radius: 16px; }
+  .body :global(ol) { margin: 0 0 1.6em; padding-inline-start: 1.4em; }
+  .body :global(li) { margin: 0 0 0.4em; }
   .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); }
   .pager a { text-decoration: none; color: var(--text); font-weight: 500; line-height: 1.35; }
   .pager a:hover { color: var(--accent); }
