@@ -244,6 +244,7 @@ export default {
     issues: 'Report a bug',
     reddit: 'r/PlugBrain',
     privacy: 'Privacy policy',
+    press: 'Press kit',
     license: 'Free software under the GPL-3.0 license.',
     made: 'Made in Algeria with care.',
     // html

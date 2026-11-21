@@ -249,6 +249,7 @@ export default {
     issues: 'Signaler un bug',
     reddit: 'r/PlugBrain',
     privacy: 'Confidentialité',
+    press: 'Kit presse',
     license: 'Logiciel libre sous licence GPL-3.0.',
     made: 'Fait avec soin en Algérie.',
     credit: 'Conçue et maintenue par <a href="https://github.com/msbelaid">Mohammed-Said Belaid</a>. Design par <a href="https://github.com/HichemDahaoui">Hichem Dahaoui</a>, icône par <a href="https://github.com/travis-jeans">Travis Jeans</a>.',
