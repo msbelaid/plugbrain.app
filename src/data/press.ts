@@ -91,7 +91,7 @@ const en = {
   facts: [
     ['Name', 'PlugBrain'],
     ['What it is', 'An Android app that uses math challenges to stop phone addiction. The more you use your distracting apps, the harder the math gets'],
-    ['Price', 'Free. No ads, no in-app purchases'],
+    ['Price', 'Free, no ads'],
     ['Platform', 'Android 9 and later'],
     ['License', 'Free and open source (GPL-3.0)'],
     ['Languages', `${languageCount}, including English, Arabic, French, Spanish, German and Portuguese`],
@@ -205,7 +205,7 @@ const fr: PressCopy = {
   facts: [
     ['Nom', 'PlugBrain'],
     ['De quoi s’agit-il', 'Une application Android qui utilise des défis de calcul pour lutter contre l’addiction au téléphone. Plus on utilise ses applications distrayantes, plus les calculs sont difficiles'],
-    ['Prix', 'Gratuite. Sans publicité ni achat intégré'],
+    ['Prix', 'Gratuite, sans publicité'],
     ['Plateforme', 'Android 9 et versions ultérieures'],
     ['Licence', 'Libre et open source (GPL-3.0)'],
     ['Langues', `${languageCount}, dont le français, l’arabe, l’anglais, l’espagnol, l’allemand et le portugais`],
@@ -315,7 +315,7 @@ const ar: PressCopy = {
   facts: [
     ['الاسم', 'PlugBrain'],
     ['ما هو', 'تطبيق أندرويد يستعمل تحديات حسابية للحد من إدمان الهاتف. كلما أكثرت من استعمال التطبيقات المشتتة، ازدادت المسائل صعوبة'],
-    ['السعر', 'مجاني، بدون إعلانات ولا مشتريات داخل التطبيق'],
+    ['السعر', 'مجاني، بدون إعلانات'],
     ['النظام', 'أندرويد 9 فما فوق'],
     ['الرخصة', 'حر ومفتوح المصدر (GPL-3.0)'],
     ['اللغات', `${languageCount} لغة، منها العربية والفرنسية والإنجليزية والإسبانية والألمانية والبرتغالية`],
