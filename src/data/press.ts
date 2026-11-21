@@ -125,7 +125,7 @@ const en = {
       label: 'Long (about 130 words)',
       text: `PlugBrain is a free, open-source Android app that uses math challenges to stop phone addiction: the more you use your distracting apps, the harder the math gets. Stay away longer and it gets easier again.
 
-You choose the apps, such as social media or games, and how often PlugBrain should step in. When it's time, the app pauses and a math challenge appears. Solve it and carry on. About 40 kinds of challenges cover addition, subtraction, multiplication, squares and equations with a missing number.
+You choose the apps, such as social media or games, and how often PlugBrain should step in. When it's time, the app pauses and a math challenge appears. Solve it and carry on. The challenges range from simple additions to complex equations.
 
 That short pause is the point: it breaks the automatic reach for the phone and leaves the choice to you. PlugBrain has no ads, needs no account and has no internet permission, so nothing leaves the phone. It is available on Google Play, F-Droid and IzzyOnDroid in ${languageCount} languages.`,
     },
@@ -138,9 +138,9 @@ That short pause is the point: it breaks the automatic reach for the phone and l
   ],
   featuresTitle: 'Key features',
   features: [
-    ['Mental math to raise your awareness', 'A quick math problem breaks the automatic reach for the app and gives you a few seconds to decide if you really want to open it.'],
+    ['Mental math to raise your awareness before opening distracting apps', 'A quick math problem breaks the automatic reach for the app and gives you a few seconds to decide if you really want to open it.'],
     ['Difficulty that adapts', 'The more often you go back, the harder the math gets. Stay away and it gets easier again.'],
-    ['About 40 kinds of challenges', 'From simple addition to multiplication, squares and equations with a missing number. A little mental math practice comes as a bonus.'],
+    ['A variety of challenges', 'From simple additions to complex equations. A little mental math practice comes as a bonus.'],
     ['You set the rules', 'Pick the apps to block, how often a challenge appears, and the difficulty to start from.'],
     ['Private by design', 'No internet permission, no account, no ads, no tracking. Everything stays on the phone.'],
     ['Free and open source', 'GPL-3.0 on GitHub. Listed on F-Droid, which checks the code and found no anti-features.'],
@@ -239,7 +239,7 @@ const fr: PressCopy = {
       label: 'Longue (environ 130 mots)',
       text: `PlugBrain est une application Android gratuite et open source qui utilise des défis de calcul pour lutter contre l’addiction au téléphone : plus vous utilisez vos applications distrayantes, plus les calculs sont difficiles. Si vous vous en éloignez plus longtemps, ils redeviennent plus faciles.
 
-Vous choisissez les applications, comme les réseaux sociaux ou les jeux, et la fréquence à laquelle PlugBrain intervient. Le moment venu, l’application se met en pause et un défi de calcul apparaît. Résolvez-le et continuez. Une quarantaine de types de défis couvrent l’addition, la soustraction, la multiplication, les carrés et les équations à trou.
+Vous choisissez les applications, comme les réseaux sociaux ou les jeux, et la fréquence à laquelle PlugBrain intervient. Le moment venu, l’application se met en pause et un défi de calcul apparaît. Résolvez-le et continuez. Les défis vont de simples additions à des équations compliquées.
 
 Cette courte pause est tout l’intérêt : elle casse le geste automatique vers le téléphone et vous laisse le choix. PlugBrain n’a pas de publicité, ne demande aucun compte et n’a pas accès à internet : rien ne quitte le téléphone. L’application est disponible sur Google Play, F-Droid et IzzyOnDroid, en ${languageCount} langues.`,
     },
@@ -252,9 +252,9 @@ Cette courte pause est tout l’intérêt : elle casse le geste automatique ver
   ],
   featuresTitle: 'Fonctionnalités clés',
   features: [
-    ['Calcul mental\u00a0: pour éveiller sa conscience', 'Un petit calcul casse le geste automatique et laisse quelques secondes pour décider si l’on veut vraiment ouvrir l’application.'],
+    ['Calcul mental\u00a0: pour éveiller sa conscience avant d’ouvrir les applications distrayantes', 'Un petit calcul casse le geste automatique et laisse quelques secondes pour décider si l’on veut vraiment ouvrir l’application.'],
     ['Une difficulté qui s’adapte', 'Plus vous y revenez souvent, plus les calculs sont difficiles. Éloignez-vous et ils redeviennent plus faciles.'],
-    ['Une quarantaine de types de défis', 'De l’addition simple à la multiplication, aux carrés et aux équations à trou. Et un peu de calcul mental en prime.'],
+    ['Une variété de défis', 'De simples additions aux équations compliquées. Et un peu de calcul mental en prime.'],
     ['Vous fixez les règles', 'Choisissez les applications à bloquer, la fréquence des défis et le niveau de départ.'],
     ['Respect de la vie privée', 'Aucune permission internet, aucun compte, aucune publicité, aucun pistage. Tout reste sur le téléphone.'],
     ['Libre et open source', 'Sous licence GPL-3.0 sur GitHub. Présente sur F-Droid, qui vérifie le code et n’y a trouvé aucune anti-fonctionnalité.'],
@@ -349,7 +349,7 @@ const ar: PressCopy = {
       label: 'وصف طويل (نحو 130 كلمة)',
       text: `PlugBrain تطبيق أندرويد مجاني ومفتوح المصدر يستعمل تحديات حسابية للحد من إدمان الهاتف: كلما أكثرت من استعمال التطبيقات المشتتة، ازدادت المسائل صعوبة. وكلما ابتعدت عنها مدة أطول، صارت أسهل.
 
-يختار المستخدم التطبيقات التي تشتته، كتطبيقات التواصل الاجتماعي أو الألعاب، ويحدد وتيرة تدخل PlugBrain. وحين يحين الوقت، يتوقف التطبيق المختار ويظهر مكانه تحد حسابي، فإذا حله المستخدم واصل. ويتضمن التطبيق نحو أربعين نوعا من التحديات: الجمع والطرح والضرب والمربعات والمعادلات ذات العدد المجهول.
+يختار المستخدم التطبيقات التي تشتته، كتطبيقات التواصل الاجتماعي أو الألعاب، ويحدد وتيرة تدخل PlugBrain. وحين يحين الوقت، يتوقف التطبيق المختار ويظهر مكانه تحد حسابي، فإذا حله المستخدم واصل. وتتنوع التحديات من عمليات جمع بسيطة إلى معادلات معقدة.
 
 هذه الوقفة القصيرة هي الفكرة كلها: تكسر الحركة الآلية نحو الهاتف وتترك القرار للمستخدم. لا يعرض PlugBrain أي إعلانات، ولا يطلب حسابا، ولا يملك صلاحية الاتصال بالإنترنت، فلا شيء يغادر الهاتف. التطبيق متوفر على Google Play وF-Droid وIzzyOnDroid بـ${languageCount} لغة.`,
     },
@@ -362,9 +362,9 @@ const ar: PressCopy = {
   ],
   featuresTitle: 'أهم المزايا',
   features: [
-    ['الحساب الذهني: لإيقاظ الوعي', 'مسألة حسابية سريعة تكسر الحركة الآلية نحو التطبيق، وتمنحك بضع ثوان لتسأل نفسك: هل أريد فعلا فتحه الآن؟'],
+    ['الحساب الذهني: لإيقاظ الوعي قبل فتح التطبيقات المشتتة', 'مسألة حسابية سريعة تكسر الحركة الآلية نحو التطبيق، وتمنحك بضع ثوان لتسأل نفسك: هل أريد فعلا فتحه الآن؟'],
     ['صعوبة تتكيف معك', 'كلما عدت إلى التطبيقات المشتتة أكثر، ازدادت المسائل صعوبة. وإذا ابتعدت عنها، صارت أسهل.'],
-    ['نحو أربعين نوعا من التحديات', 'من الجمع البسيط إلى الضرب والمربعات والمعادلات ذات العدد المجهول، مع تمرين يومي على الحساب الذهني.'],
+    ['تحديات متنوعة', 'من عمليات الجمع البسيطة إلى المعادلات المعقدة، مع تمرين يومي على الحساب الذهني.'],
     ['أنت من يضع القواعد', 'اختر التطبيقات التي تريد حجبها، ووتيرة ظهور التحديات، ومستوى الصعوبة الذي تبدأ منه.'],
     ['خصوصية في التصميم', 'لا اتصال بالإنترنت، لا حساب، لا إعلانات، ولا تتبع. كل شيء يبقى على الهاتف.'],
     ['حر ومفتوح المصدر', 'برخصة GPL-3.0 على GitHub، ومتوفر على F-Droid الذي يراجع الشيفرة ولم يجد فيه أي خاصية مضرة.'],
