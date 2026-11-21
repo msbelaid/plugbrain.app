@@ -138,7 +138,7 @@ That short pause is the point: it breaks the automatic reach for the phone and l
   ],
   featuresTitle: 'Key features',
   features: [
-    ['A math challenge, not a timer', 'You can tap past a timer without thinking. A math problem makes you stop for a few seconds and decide if you really want to open the app.'],
+    ['Mental math to raise your awareness', 'A quick math problem breaks the automatic reach for the app and gives you a few seconds to decide if you really want to open it.'],
     ['Difficulty that adapts', 'The more often you go back, the harder the math gets. Stay away and it gets easier again.'],
     ['About 40 kinds of challenges', 'From simple addition to multiplication, squares and equations with a missing number. A little mental math practice comes as a bonus.'],
     ['You set the rules', 'Pick the apps to block, how often a challenge appears, and the difficulty to start from.'],
@@ -252,7 +252,7 @@ Cette courte pause est tout l’intérêt : elle casse le geste automatique ver
   ],
   featuresTitle: 'Fonctionnalités clés',
   features: [
-    ['Un calcul, pas un minuteur', 'On ferme un minuteur sans même y penser. Un calcul oblige à s’arrêter quelques secondes et à se demander si l’on veut vraiment ouvrir l’application.'],
+    ['Calcul mental\u00a0: pour éveiller sa conscience', 'Un petit calcul casse le geste automatique et laisse quelques secondes pour décider si l’on veut vraiment ouvrir l’application.'],
     ['Une difficulté qui s’adapte', 'Plus vous y revenez souvent, plus les calculs sont difficiles. Éloignez-vous et ils redeviennent plus faciles.'],
     ['Une quarantaine de types de défis', 'De l’addition simple à la multiplication, aux carrés et aux équations à trou. Et un peu de calcul mental en prime.'],
     ['Vous fixez les règles', 'Choisissez les applications à bloquer, la fréquence des défis et le niveau de départ.'],
@@ -362,7 +362,7 @@ const ar: PressCopy = {
   ],
   featuresTitle: 'أهم المزايا',
   features: [
-    ['مسألة حسابية، لا مؤقت', 'المؤقت نتجاوزه بنقرة دون تفكير. أما المسألة الحسابية فتجعلك تتوقف بضع ثوان لتسأل نفسك: هل أريد فعلا فتح هذا التطبيق؟'],
+    ['الحساب الذهني: لإيقاظ الوعي', 'مسألة حسابية سريعة تكسر الحركة الآلية نحو التطبيق، وتمنحك بضع ثوان لتسأل نفسك: هل أريد فعلا فتحه الآن؟'],
     ['صعوبة تتكيف معك', 'كلما عدت إلى التطبيقات المشتتة أكثر، ازدادت المسائل صعوبة. وإذا ابتعدت عنها، صارت أسهل.'],
     ['نحو أربعين نوعا من التحديات', 'من الجمع البسيط إلى الضرب والمربعات والمعادلات ذات العدد المجهول، مع تمرين يومي على الحساب الذهني.'],
     ['أنت من يضع القواعد', 'اختر التطبيقات التي تريد حجبها، ووتيرة ظهور التحديات، ومستوى الصعوبة الذي تبدأ منه.'],
