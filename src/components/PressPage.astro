@@ -1,0 +1,253 @@
+---
+// The press kit page, in the page's language. Copy lives in src/data/press.ts, files in public/press/.
+// Each language's ZIP is built after `astro build` by scripts/press-zip.sh (npm "postbuild").
+import Base from '../layouts/Base.astro';
+import { links } from '../data/links';
+import { homeFor, languages } from '../i18n';
+import {
+  pressCopy, pressEmail, pressPaths, pressSuffix, screenshotDir, screenshotFiles,
+  logoFiles, graphicFiles, colors, coverageLinks,
+} from '../data/press';
+
+const locale = Astro.currentLocale ?? 'en';
+const c = pressCopy(locale);
+const base = '/press';
+const shots = screenshotDir(locale);
+const suffix = pressSuffix(locale);
+const mailto = `mailto:${pressEmail}?subject=${encodeURIComponent(c.mailSubject)}`;
+const contactHtml = c.contactText.replace('{email}', `<a href="${mailto}">${pressEmail}</a>`);
+const alternates = Object.fromEntries(Object.keys(languages).map((l) => [l, pressPaths[l]]));
+const q = (text: string) => `${c.openQuote}${text}${c.closeQuote}`;
+---
+<Base title={c.meta.title} description={c.meta.description} alternates={alternates}>
+  <article class="wrap press">
+    <a class="back" href={homeFor(locale)}>{c.back}</a>
+    <header class="intro">
+      <h1>{c.title}</h1>
+      <p class="lead">{c.lead}</p>
+      <div class="actions">
+        <a class="btn primary" href={`${base}/plugbrain-press-kit${suffix}.zip`} download>{c.zip}</a>
+        <a class="btn" href={`${base}/plugbrain-fact-sheet${suffix}.pdf`} download>{c.factSheet}</a>
+        <a class="btn" href={mailto}>{c.contactButton}</a>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label={c.toc.label}>
+      <a href="#facts">{c.toc.facts}</a>
+      <a href="#descriptions">{c.toc.descriptions}</a>
+      <a href="#story">{c.toc.story}</a>
+      <a href="#features">{c.toc.features}</a>
+      <a href="#quotes">{c.toc.quotes}</a>
+      <a href="#logos">{c.toc.logos}</a>
+      <a href="#screenshots">{c.toc.screenshots}</a>
+      <a href="#contact">{c.toc.contact}</a>
+    </nav>
+
+    <section id="facts">
+      <h2>{c.factsTitle}</h2>
+      <dl class="facts">
+        {c.facts.map(([k, v]) => (<div><dt>{k}</dt><dd>{v}</dd></div>))}
+        <div>
+          <dt>{c.getIt}</dt>
+          <dd>
+            <a href={links.play}>Google Play</a> · <a href={links.fdroid}>F-Droid</a> · <a href={links.izzy}>IzzyOnDroid</a> · <a href={links.apk}>{c.apk}</a>
+          </dd>
+        </div>
+        <div><dt>{c.linksLabel}</dt><dd><a href={new URL(homeFor(locale), 'https://plugbrain.app').href}>plugbrain.app</a> · <a href={links.github}>{c.source}</a> · <a href={links.reddit}>r/PlugBrain</a></dd></div>
+      </dl>
+    </section>
+
+    <section id="descriptions">
+      <h2>{c.descriptionsTitle}</h2>
+      <p class="note">{c.descriptionsNote}</p>
+      {c.descriptions.map((d) => (
+        <div class="card copyable">
+          <div class="card-head">
+            <h3>{d.label}</h3>
+            <button type="button" class="copy" data-copy={d.id} data-label={c.copy} data-copied={c.copied} data-selected={c.selected}>{c.copy}</button>
+          </div>
+          <div id={`desc-${d.id}`} class="copy-text">
+            {d.text.split('\n\n').map((p) => <p>{p}</p>)}
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <section id="story">
+      <h2>{c.storyTitle}</h2>
+      {c.story.map((p) => <p>{p}</p>)}
+    </section>
+
+    <section id="features">
+      <h2>{c.featuresTitle}</h2>
+      <ul class="features">
+        {c.features.map(([title, body]) => (<li><h3>{title}</h3><p>{body}</p></li>))}
+      </ul>
+    </section>
+
+    <section id="quotes">
+      <h2>{c.quotesTitle}</h2>
+      <p class="note">{c.quotesNote}</p>
+      {c.quotes.map((text) => (<blockquote><p>{q(text)}</p></blockquote>))}
+    </section>
+
+    <section id="logos">
+      <h2>{c.logosTitle}</h2>
+      <p class="note">{c.logosNote}</p>
+      <ul class="grid logos">
+        {logoFiles.map((l, i) => (
+          <li>
+            <div class={`thumb logo-thumb bg-${l.bg}`}><img src={`${base}/logo/${l.file}.svg`} alt={`${c.logoAlt}: ${c.logoLabels[i]}`} width="96" height="96" loading="lazy" /></div>
+            <p class="label">{c.logoLabels[i]}</p>
+            <p class="dl"><a href={`${base}/logo/${l.file}.svg`} download>SVG</a> · <a href={`${base}/logo/${l.file}-1920.png`} download>PNG 1920</a></p>
+          </li>
+        ))}
+        <li>
+          <div class="thumb logo-thumb bg-none"><img src={`${base}/logo/plugbrain-app-icon-512.png`} alt={c.appIcon} width="96" height="96" loading="lazy" /></div>
+          <p class="label">{c.appIcon}</p>
+          <p class="dl"><a href={`${base}/logo/plugbrain-app-icon-512.png`} download>PNG 512</a></p>
+        </li>
+      </ul>
+      <h3 class="sub">{c.colorsTitle}</h3>
+      <ul class="swatches">
+        {colors.map((col) => (<li><span style={`background:${col.hex}`}></span>{c.colorNames[col.key]} <bdi>{col.hex}</bdi></li>))}
+      </ul>
+      <p class="note">{c.nameNote}</p>
+
+      <h3 class="sub">{c.bannersTitle}</h3>
+      <ul class="grid banners">
+        {graphicFiles.map((file, i) => (
+          <li>
+            <a class="thumb" href={`${base}/graphics/${file}`} download><img src={`${base}/graphics/${file}`} alt={`${c.bannerAlt}: ${c.graphicLabels[i]}`} loading="lazy" /></a>
+            <p class="label">{c.graphicLabels[i]}</p>
+          </li>
+        ))}
+        <li>
+          <a class="thumb" href={`${base}/graphics/plugbrain-demo.gif`} download><img src={`${base}/graphics/plugbrain-demo.gif`} alt={c.gifAlt} loading="lazy" /></a>
+          <p class="label">{c.gifLabel}</p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="screenshots">
+      <h2>{c.screenshotsTitle}</h2>
+      <p class="note">{c.screenshotsNote}</p>
+      <ul class="grid shots">
+        {screenshotFiles.map((file, i) => (
+          <li>
+            <a class="thumb shot" href={`${shots}/${file}`} download><img src={`${shots}/${file}`} alt={`${c.screenshotAlt}: ${c.screenshotLabels[i]}`} width="1080" height="2340" loading="lazy" /></a>
+            <p class="label">{c.screenshotLabels[i]}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section id="coverage">
+      <h2>{c.coverageTitle}</h2>
+      <ul class="coverage">
+        {coverageLinks.map((link, i) => (<li><a href={link.url} hreflang={link.lang}>{c.coverageTitles[i]}</a> <span>{link.outlet}</span></li>))}
+      </ul>
+    </section>
+
+    <section id="credits">
+      <h2>{c.creditsTitle}</h2>
+      <ul class="credits">
+        {c.credits.map((html) => <li set:html={html} />)}
+      </ul>
+    </section>
+
+    <section id="contact" class="contact card">
+      <h2>{c.contactTitle}</h2>
+      <p set:html={contactHtml} />
+    </section>
+  </article>
+</Base>
+
+<script>
+  for (const button of document.querySelectorAll<HTMLButtonElement>('button[data-copy]')) {
+    button.addEventListener('click', async () => {
+      const el = document.getElementById(`desc-${button.dataset.copy}`);
+      if (!el) return;
+      const text = [...el.querySelectorAll('p')].map((p) => p.textContent?.trim()).join('\n\n');
+      try {
+        await navigator.clipboard.writeText(text);
+        button.textContent = button.dataset.copied ?? '';
+      } catch {
+        // Clipboard blocked: select the text so it can be copied by hand.
+        const range = document.createRange();
+        range.selectNodeContents(el);
+        getSelection()?.removeAllRanges();
+        getSelection()?.addRange(range);
+        button.textContent = button.dataset.selected ?? '';
+      }
+      setTimeout(() => (button.textContent = button.dataset.label ?? ''), 2000);
+    });
+  }
+</script>
+
+<style>
+  .press { max-width: 960px; padding-top: 56px; padding-bottom: 96px; }
+  .back { display: inline-block; margin-bottom: 28px; text-decoration: none; font-size: 15px; }
+  h1 { font-size: clamp(36px, 5vw, 52px); }
+  .lead { font-size: 19px; color: var(--muted); max-width: 640px; margin: 12px 0 0; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .btn { display: inline-flex; align-items: center; padding: 12px 20px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--text); text-decoration: none; font-weight: 500; font-size: 15px; }
+  .btn:hover { border-color: var(--accent); }
+  .btn.primary { background: var(--green); border-color: var(--green); color: var(--beige); }
+  .btn.primary:hover { background: var(--teal-700); }
+  .toc { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 40px 0 0; padding: 14px 0; border-block: 1px solid var(--line); font-size: 15px; }
+  .toc a { text-decoration: none; color: var(--muted); }
+  .toc a:hover { color: var(--accent); }
+  section { margin-top: 56px; scroll-margin-top: 90px; }
+  h2 { font-size: 28px; margin-bottom: 16px; }
+  h3 { font-size: 17px; }
+  .sub { margin: 36px 0 14px; }
+  .note { color: var(--muted); font-size: 15px; margin: -6px 0 18px; }
+  section > p { max-width: 720px; }
+  .facts { display: grid; margin: 0; border-top: 1px solid var(--line); }
+  .facts div { display: grid; grid-template-columns: 180px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .facts dt { color: var(--muted); font-size: 15px; }
+  .facts dd { margin: 0; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 24px; }
+  .copyable + .copyable { margin-top: 14px; }
+  .card-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .card-head h3 { font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  .copy { font: inherit; font-size: 14px; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--accent); cursor: pointer; }
+  .copy:hover { border-color: var(--accent); }
+  .copy-text p { margin: 0 0 10px; }
+  .copy-text p:last-child { margin-bottom: 0; }
+  .features { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+  .features li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+  .features p { margin: 8px 0 0; color: var(--muted); font-size: 15px; }
+  blockquote { margin: 0 0 14px; padding: 4px 0 4px 20px; border-inline-start: 3px solid var(--teal); font-size: 18px; }
+  blockquote p { margin: 0; }
+  .grid { list-style: none; padding: 0; margin: 0; display: grid; gap: 18px; }
+  .logos { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .banners { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  .shots { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+  .thumb { display: grid; place-items: center; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
+  .thumb img { display: block; width: 100%; height: auto; }
+  .logo-thumb { aspect-ratio: 1; }
+  .logo-thumb img { width: 96px; height: 96px; }
+  .logo-thumb.bg-none img { width: 70%; height: auto; }
+  .banners .thumb { aspect-ratio: 16 / 9; background: var(--bg-alt); }
+  .banners .thumb img { width: 100%; height: 100%; object-fit: contain; }
+  .bg-light { background: #f9f5f4; }
+  .bg-dark { background: #001824; }
+  .bg-none { background: repeating-conic-gradient(var(--bg-alt) 0 25%, var(--surface) 0 50%) 0 0 / 16px 16px; }
+  .shot { border-radius: 12px; }
+  .label { margin: 8px 0 0; font-size: 14px; }
+  .dl { margin: 2px 0 0; font-size: 14px; }
+  .swatches { list-style: none; padding: 0; margin: 0 0 24px; display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 15px; }
+  .swatches li { display: flex; align-items: center; gap: 8px; }
+  .swatches span { width: 22px; height: 22px; border-radius: 6px; border: 1px solid var(--line); }
+  .coverage, .credits { padding-inline-start: 22px; display: grid; gap: 8px; }
+  .coverage span { color: var(--muted); font-size: 14px; margin-inline-start: 6px; }
+  .contact { margin-top: 56px; }
+  .contact h2 { margin-bottom: 8px; }
+  .contact p { margin: 0; }
+  @media (max-width: 600px) {
+    .facts div { grid-template-columns: 1fr; gap: 2px; }
+    .card { padding: 18px; }
+  }
+</style>
