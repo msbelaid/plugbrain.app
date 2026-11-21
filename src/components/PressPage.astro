@@ -6,7 +6,7 @@ import { links } from '../data/links';
 import { homeFor, languages } from '../i18n';
 import {
   pressCopy, pressEmail, pressPaths, pressSuffix, screenshotDir, screenshotFiles,
-  logoFiles, graphicFiles, colors, coverageLinks,
+  logoFiles, graphicsFor, colors, coverageLinks,
 } from '../data/press';
 
 const locale = Astro.currentLocale ?? 'en';
@@ -14,6 +14,7 @@ const c = pressCopy(locale);
 const base = '/press';
 const shots = screenshotDir(locale);
 const suffix = pressSuffix(locale);
+const graphics = graphicsFor(locale);
 const mailto = `mailto:${pressEmail}?subject=${encodeURIComponent(c.mailSubject)}`;
 const contactHtml = c.contactText.replace('{email}', `<a href="${mailto}">${pressEmail}</a>`);
 const alternates = Object.fromEntries(Object.keys(languages).map((l) => [l, pressPaths[l]]));
@@ -116,9 +117,9 @@ const q = (text: string) => `${c.openQuote}${text}${c.closeQuote}`;
 
       <h3 class="sub">{c.bannersTitle}</h3>
       <ul class="grid banners">
-        {graphicFiles.map((file, i) => (
+        {graphics.files.map((file, i) => (
           <li>
-            <a class="thumb" href={`${base}/graphics/${file}`} download><img src={`${base}/graphics/${file}`} alt={`${c.bannerAlt}: ${c.graphicLabels[i]}`} loading="lazy" /></a>
+            <a class="thumb" href={`${graphics.dir}/${file}`} download><img src={`${graphics.dir}/${file}`} alt={`${c.bannerAlt}: ${c.graphicLabels[i]}`} loading="lazy" /></a>
             <p class="label">{c.graphicLabels[i]}</p>
           </li>
         ))}
@@ -230,8 +231,8 @@ const q = (text: string) => `${c.openQuote}${text}${c.closeQuote}`;
   .logo-thumb { aspect-ratio: 1; }
   .logo-thumb img { width: 96px; height: 96px; }
   .logo-thumb.bg-none img { width: 70%; height: auto; }
-  .banners .thumb { aspect-ratio: 16 / 9; background: var(--bg-alt); }
-  .banners .thumb img { width: 100%; height: 100%; object-fit: contain; }
+  .banners .thumb { position: relative; aspect-ratio: 16 / 9; background: var(--bg-alt); }
+  .banners .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
   .bg-light { background: #f9f5f4; }
   .bg-dark { background: #001824; }
   .bg-none { background: repeating-conic-gradient(var(--bg-alt) 0 25%, var(--surface) 0 50%) 0 0 / 16px 16px; }

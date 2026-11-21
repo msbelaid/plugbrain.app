@@ -37,12 +37,29 @@ export const logoFiles = [
   { file: 'plugbrain-dark-square', bg: 'none' },
 ];
 
-export const graphicFiles = [
+const defaultGraphics = [
   'plugbrain-banner-1920x1080.png',
   'plugbrain-banner-1280x640.png',
   'plugbrain-banner-1024x500.png',
   'plugbrain-banner-light-1024x500.png',
 ];
+
+/** Banners for a language: Arabic has its own designs (same content as the Arabic Facebook post). */
+export function graphicsFor(locale: string): { dir: string; files: string[] } {
+  if (locale === 'ar') {
+    return {
+      dir: '/press/graphics/ar',
+      files: [
+        'plugbrain-banner-ar-1920x1080.png',
+        'plugbrain-banner-ar-1280x640.png',
+        'plugbrain-banner-ar-1024x500.png',
+        'plugbrain-post-ar-1080x1080.png',
+        'plugbrain-post-ar-1080x1350.png',
+      ],
+    };
+  }
+  return { dir: '/press/graphics', files: defaultGraphics };
+}
 
 export const colors = [
   { hex: '#20DFD9', key: 'teal' },
@@ -370,7 +387,7 @@ const ar: PressCopy = {
   colorNames: { teal: 'فيروزي', green: 'أخضر داكن', navy: 'كحلي', cyan: 'سماوي', beige: 'بيج' },
   nameNote: 'يُكتب الاسم PlugBrain: كلمة واحدة بحرفي P وB كبيرين. الخط المستعمل في الموقع والصور هو Lexend.',
   bannersTitle: 'صور ترويجية وعرض متحرك',
-  graphicLabels: ['صورة 1920 × 1080', 'صورة 1280 × 640', 'صورة 1024 × 500', 'صورة فاتحة 1024 × 500'],
+  graphicLabels: ['صورة 1920 × 1080', 'صورة 1280 × 640', 'صورة 1024 × 500', 'منشور مربع 1080 × 1080', 'منشور عمودي 1080 × 1350'],
   bannerAlt: 'صورة ترويجية لـ PlugBrain',
   gifLabel: 'عرض متحرك (GIF)',
   gifAlt: 'عرض متحرك: تزداد المسائل الحسابية صعوبة كلما أكثرت من استعمال تطبيق محجوب',
