@@ -241,6 +241,7 @@ export default {
     issues: 'أبلغ عن مشكلة',
     reddit: 'r/PlugBrain',
     privacy: 'سياسة الخصوصية',
+    press: 'الملف الصحفي',
     license: 'برنامج حر بترخيص GPL-3.0.',
     made: 'صُنع في الجزائر بعناية.',
     credit: 'التطوير والصيانة: <a href="https://github.com/msbelaid">محمد سعيد بلعيد</a>. التصميم: <a href="https://github.com/HichemDahaoui">Hichem Dahaoui</a>، والأيقونة: <a href="https://github.com/travis-jeans">Travis Jeans</a>.',
