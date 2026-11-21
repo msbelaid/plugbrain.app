@@ -139,7 +139,7 @@ That short pause is the point: it breaks the automatic reach for the phone and l
   featuresTitle: 'Key features',
   features: [
     ['Mental math to raise your awareness before opening distracting apps', 'A quick math problem breaks the automatic reach for the app and gives you a few seconds to decide if you really want to open it.'],
-    ['Difficulty that adapts', 'The more often you go back, the harder the math gets. Stay away and it gets easier again.'],
+    ['Difficulty that adapts to how often you use your apps', 'The more often you go back, the harder the math gets. Stay away and it gets easier again.'],
     ['A variety of challenges', 'From simple additions to complex equations. A little mental math practice comes as a bonus.'],
     ['You set the rules', 'Pick the apps to block, how often a challenge appears, and the difficulty to start from.'],
     ['Private by design', 'No internet permission, no account, no ads, no tracking. Everything stays on the phone.'],
@@ -253,7 +253,7 @@ Cette courte pause est tout l’intérêt : elle casse le geste automatique ver
   featuresTitle: 'Fonctionnalités clés',
   features: [
     ['Calcul mental\u00a0: pour éveiller sa conscience avant d’ouvrir les applications distrayantes', 'Un petit calcul casse le geste automatique et laisse quelques secondes pour décider si l’on veut vraiment ouvrir l’application.'],
-    ['Une difficulté qui s’adapte', 'Plus vous y revenez souvent, plus les calculs sont difficiles. Éloignez-vous et ils redeviennent plus faciles.'],
+    ['Une difficulté qui s’adapte à la fréquence d’utilisation des applications', 'Plus vous y revenez souvent, plus les calculs sont difficiles. Éloignez-vous et ils redeviennent plus faciles.'],
     ['Une variété de défis', 'De simples additions aux équations compliquées. Et un peu de calcul mental en prime.'],
     ['Vous fixez les règles', 'Choisissez les applications à bloquer, la fréquence des défis et le niveau de départ.'],
     ['Respect de la vie privée', 'Aucune permission internet, aucun compte, aucune publicité, aucun pistage. Tout reste sur le téléphone.'],
@@ -363,7 +363,7 @@ const ar: PressCopy = {
   featuresTitle: 'أهم المزايا',
   features: [
     ['الحساب الذهني: لإيقاظ الوعي قبل فتح التطبيقات المشتتة', 'مسألة حسابية سريعة تكسر الحركة الآلية نحو التطبيق، وتمنحك بضع ثوان لتسأل نفسك: هل أريد فعلا فتحه الآن؟'],
-    ['صعوبة تتكيف معك', 'كلما عدت إلى التطبيقات المشتتة أكثر، ازدادت المسائل صعوبة. وإذا ابتعدت عنها، صارت أسهل.'],
+    ['صعوبة تتكيف مع وتيرة استعمال التطبيقات', 'كلما عدت إلى التطبيقات المشتتة أكثر، ازدادت المسائل صعوبة. وإذا ابتعدت عنها، صارت أسهل.'],
     ['تحديات متنوعة', 'من عمليات الجمع البسيطة إلى المعادلات المعقدة، مع تمرين يومي على الحساب الذهني.'],
     ['أنت من يضع القواعد', 'اختر التطبيقات التي تريد حجبها، ووتيرة ظهور التحديات، ومستوى الصعوبة الذي تبدأ منه.'],
     ['خصوصية في التصميم', 'لا اتصال بالإنترنت، لا حساب، لا إعلانات، ولا تتبع. كل شيء يبقى على الهاتف.'],
