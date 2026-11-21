@@ -4,6 +4,7 @@ import { getStrings, homeFor, languages } from '../i18n';
 import { links } from '../data/links';
 import { repoInfo } from '../data/github';
 import { gardenHome } from '../data/garden';
+import { pressPaths } from '../data/press';
 
 const locale = Astro.currentLocale ?? 'en';
 const t = getStrings(locale);
@@ -40,7 +41,7 @@ const inGarden = Astro.url.pathname.includes('/garden/');
         <li><a href={links.github}>{t.footer.source}</a></li>
         <li><a href={links.issues}>{t.footer.issues}</a></li>
         <li><a href={links.reddit}>{t.footer.reddit}</a></li>
-        <li><a href="/press/">{t.footer.press}</a></li>
+        <li><a href={pressPaths[locale] ?? pressPaths.en}>{t.footer.press}</a></li>
         <li><a href="/privacy/">{t.footer.privacy}</a></li>
       </ul>
     </div>
