@@ -157,6 +157,11 @@ const q = (text: string) => `${c.openQuote}${text}${c.closeQuote}`;
       </ul>
     </section>
 
+    <section id="about">
+      <h2>{c.aboutTitle}</h2>
+      <p class="bio"><strong>{c.bio[0]}</strong>{c.bio.slice(1).map((line) => (<><br />{line}</>))}</p>
+    </section>
+
     <section id="contact" class="contact card">
       <h2>{c.contactTitle}</h2>
       <p set:html={contactHtml} />
@@ -244,6 +249,7 @@ const q = (text: string) => `${c.openQuote}${text}${c.closeQuote}`;
   .swatches span { width: 22px; height: 22px; border-radius: 6px; border: 1px solid var(--line); }
   .coverage, .credits { padding-inline-start: 22px; display: grid; gap: 8px; }
   .coverage span { color: var(--muted); font-size: 14px; margin-inline-start: 6px; }
+  .bio { line-height: 1.7; }
   .contact { margin-top: 56px; }
   .contact h2 { margin-bottom: 8px; }
   .contact p { margin: 0; }

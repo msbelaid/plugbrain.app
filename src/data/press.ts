@@ -181,6 +181,8 @@ That short pause is the point: it breaks the automatic reach for the phone and l
     '<strong>Travis Jeans</strong>, logo and app icon (<a href="https://github.com/travis-jeans">GitHub</a>)',
     'Translators and code contributors from around the world, listed on <a href="https://github.com/msbelaid/PlugBrain/graphs/contributors">GitHub</a>',
   ],
+  aboutTitle: 'About the developer',
+  bio: ['Mohammed-Said Belaid', 'Android developer and consultant', 'University lecturer at USTO (University of Science and Technology of Oran)', 'Developer of PlugBrain'],
   contactTitle: 'Contact',
   // html; {email} is replaced with the linked address.
   contactText: 'For interviews, questions or a review build, write to Mohammed-Said Belaid at {email}. Interviews are possible in English, French and Arabic.',
@@ -294,6 +296,8 @@ Cette courte pause est tout l’intérêt : elle casse le geste automatique ver
     '<strong>Travis Jeans</strong>, logo et icône (<a href="https://github.com/travis-jeans">GitHub</a>)',
     'Des traducteurs et contributeurs du monde entier, listés sur <a href="https://github.com/msbelaid/PlugBrain/graphs/contributors">GitHub</a>',
   ],
+  aboutTitle: 'À propos du développeur',
+  bio: ['Mohammed-Said Belaid', 'Développeur et consultant Android', 'Enseignant universitaire à l’USTO (Université des Sciences et de la Technologie d’Oran)', 'Développeur de PlugBrain'],
   contactTitle: 'Contact',
   contactText: 'Pour une interview, une question ou une version de test, écrivez à Mohammed-Said Belaid à {email}. Interviews possibles en français, en arabe et en anglais.',
 };
@@ -404,6 +408,8 @@ const ar: PressCopy = {
     '<strong>Travis Jeans</strong>، الشعار وأيقونة التطبيق (<a href="https://github.com/travis-jeans">GitHub</a>)',
     'مترجمون ومساهمون من مختلف أنحاء العالم، تجد أسماءهم على <a href="https://github.com/msbelaid/PlugBrain/graphs/contributors">GitHub</a>',
   ],
+  aboutTitle: 'عن المطوّر',
+  bio: ['محمد السعيد بلعيد', 'مطوّر ومستشار في تطبيقات أندرويد', 'أستاذ جامعي بجامعة وهران للعلوم والتكنولوجيا (USTO)', 'مطوّر تطبيق PlugBrain'],
   contactTitle: 'التواصل',
   contactText: 'لإجراء حوار أو طرح سؤال أو طلب نسخة للتجربة، راسل محمد السعيد بلعيد على {email}. الحوارات ممكنة بالعربية والفرنسية والإنجليزية.',
 };
