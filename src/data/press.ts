@@ -2,7 +2,7 @@
 // public/press/. French typography:   is a non-breaking space (before ":" and between a number
 // and its unit),   a narrow non-breaking space (before "; ! ?" and inside « »).
 
-export const pressEmail = 'belaid.mohammed.said@gmail.com';
+export const pressEmail = 'contact@plugbrain.app';
 export const languageCount = 13;
 
 /** Where each language's press page lives. */
