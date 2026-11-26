@@ -70,6 +70,7 @@ export const colors = [
 ] as const;
 
 export const coverageLinks = [
+  { outlet: 'Echorouk', url: 'https://www.echoroukonline.com/%D8%A7%D8%A8%D8%AA%D9%83%D8%A7%D8%B1-%D8%AC%D8%B2%D8%A7%D8%A6%D8%B1%D9%8A-%D9%84%D9%85%D8%AD%D8%A7%D8%B1%D8%A8%D8%A9-%D8%A7%D9%84%D8%A5%D8%AF%D9%85%D8%A7%D9%86-%D8%A7%D9%84%D8%B1%D9%82%D9%85%D9%8A', lang: 'ar' },
   { outlet: 'Valley4Techs', url: 'https://en.valley4techs.com/2026/11/plugbrain-app-review.html', lang: 'en' },
   { outlet: 'Valley4Techs', url: 'https://www.valley4techs.com/2026/11/plugbrain-app-review.html', lang: 'ar' },
 ];
@@ -172,7 +173,7 @@ That short pause is the point: it breaks the automatic reach for the phone and l
   screenshotLabels: ['Welcome screen', 'Choosing the apps to block', 'Home screen', 'A math challenge', 'How often to challenge', 'Starting difficulty', 'Dark mode'],
   screenshotAlt: 'PlugBrain screenshot',
   coverageTitle: 'Coverage',
-  coverageTitles: ['PlugBrain app review (English)', 'PlugBrain app review (Arabic)'],
+  coverageTitles: ['An Algerian innovation to fight digital addiction (Arabic)', 'PlugBrain app review (English)', 'PlugBrain app review (Arabic)'],
   creditsTitle: 'Credits',
   // html
   credits: [
@@ -288,7 +289,7 @@ Cette courte pause est tout l’intérêt : elle casse le geste automatique ver
   screenshotLabels: ['Écran d’accueil', 'Choix des applications à bloquer', 'Écran principal', 'Un défi de calcul', 'Fréquence des défis', 'Difficulté de départ', 'Mode sombre'],
   screenshotAlt: 'Capture d’écran de PlugBrain',
   coverageTitle: 'Ils en parlent',
-  coverageTitles: ['Test de l’application PlugBrain (anglais)', 'Test de l’application PlugBrain (arabe)'],
+  coverageTitles: ['Une innovation algérienne contre l’addiction numérique (arabe)', 'Test de l’application PlugBrain (anglais)', 'Test de l’application PlugBrain (arabe)'],
   creditsTitle: 'Crédits',
   credits: [
     '<strong>Mohammed-Said Belaid</strong>, développeur et mainteneur (<a href="https://github.com/msbelaid">GitHub</a>)',
@@ -400,7 +401,7 @@ const ar: PressCopy = {
   screenshotLabels: ['شاشة الترحيب', 'اختيار التطبيقات المراد حجبها', 'الشاشة الرئيسية', 'تحد حسابي', 'وتيرة التحديات', 'مستوى الصعوبة الأولي', 'الوضع الداكن'],
   screenshotAlt: 'لقطة شاشة من PlugBrain',
   coverageTitle: 'تحدثوا عنه',
-  coverageTitles: ['مراجعة تطبيق PlugBrain (بالإنجليزية)', 'مراجعة تطبيق PlugBrain (بالعربية)'],
+  coverageTitles: ['ابتكار جزائري لمحاربة الإدمان الرقمي', 'مراجعة تطبيق PlugBrain (بالإنجليزية)', 'مراجعة تطبيق PlugBrain (بالعربية)'],
   creditsTitle: 'شكر وتقدير',
   credits: [
     '<strong>محمد السعيد بلعيد</strong>، المطور والمشرف على المشروع (<a href="https://github.com/msbelaid">GitHub</a>)',
